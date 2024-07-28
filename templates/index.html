@@ -14,12 +14,17 @@
   </head>
   <body>
     <nav>
-      <img src="../static/logo.png" alt="Not enough budget!" class="logo">
+      <img
+        src="../static/logo.png"
+        alt="Not enough budget!"
+        class="logo"
+        onclick="location.href='index.html';"
+      />
       <div class="navbar-text">
         <ul>
-          <li>Dashboard</li>
-          <li>About Us</li>
-          <li>Login</li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="#">Login</a></li>
         </ul>
       </div>
     </nav>
@@ -27,10 +32,16 @@
       <div class="article-text">
         <h1 class="heading">Your Budgeting</h1>
         <h2 class="smaller-heading">Begin Your Budgeting Adventure</h2>
-        <button class="sign-up">Get Started</button>
+        <button class="sign-up" onclick="location.href='#';">
+          Get Started
+        </button>
       </div>
       <div class="background">
-        <img src="../static/preview.png" alt="Not enough budget!" class="preview">
+        <img
+          src="../static/preview.png"
+          alt="Not enough budget!"
+          class="preview"
+        />
       </div>
     </article>
   </body>
