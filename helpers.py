@@ -1,7 +1,7 @@
 import os, sys
 
 
-
+#New York State tax bracket dictionary
 ny_tax_brackets = [
     {"rate": 4.00, "s": (0, 8500), "mfj": (0, 17150), "hoh": (0, 12800)},
     {"rate": 4.50, "s": (8501, 11700), "mfj": (17151, 23600), "hoh": (12801, 17650)},
@@ -16,7 +16,7 @@ ny_tax_brackets = [
 ]
 
        
-
+#Federal tax brackets dictionary
 federal_brackets = [
     {"rate": 10, "s": (0, 11000), "mfj": (0, 22000), "hoh": (0, 15700)},
     {"rate": 12, "s": (11001, 44725), "mfj": (22001, 89450), "hoh": (15701, 59850)},
@@ -26,6 +26,7 @@ federal_brackets = [
     {"rate": 35, "s": (231251, 578125), "mfj": (462501, 693750), "hoh": (231251, 578100)},
     {"rate": 37, "s": (578126, float('inf')), "mfj": (693751, float('inf')), "hoh": (578101, float('inf'))}]
 
+#New York City Tax Brackets
 nyc_tax_brackets = [
     {"rate": 3.078, "s": (0, 12000), "mfj": (0, 21600), "hoh": (0, 14400)},
     {"rate": 3.762, "s": (12001, 25000), "mfj": (21601, 45000), "hoh": (14401, 30000)},
@@ -39,19 +40,23 @@ class taxCalculator:
         self.status = status
         self.income = income
         self.taxes = 0
+        #Checks if the value given is already adjusted gross income or not
         if agiVal == True:
             self.agi = self.income
         else:
             self.agi = self.fagi(income, status, deductions)
 
+        #Calculated the amount of taxes you must pay
         self.taxes += self.federal(self.agi,status)
         self.taxes += self.state(self.agi,status)
         self.taxes += self.city(self.agi,status)
 
         self.leftover = (self.income - self.taxes)/12
     
+    #Calculates Federal Adjusted Gross Income
     def fagi(self, income, status, deductions):
         agi = income
+        #Checks for status of the tax filer and then removes their standard deduction from their agi
         if status == 's': 
             agi = agi - 13850
         elif status == 'mfj':
@@ -61,17 +66,21 @@ class taxCalculator:
         else:
             agi = agi - 27700
 
+        #Subtracts any additional deductions the tax filer might have from their agi 
         agi = agi - deductions
 
 
         return agi
 
+    # Calculates state taxes
     def state(self, agi, status):
         taxable_income = 0
+        #Iterates through all tax brackets until it reaches highest tax bracket for income and then ends loop.
         for i in len(ny_tax_brackets):
+            #If agi is greater than the upper threshold of bracket subtract lower threshold from upper threshold and then multiply difference by bracket rate
             if agi > ny_tax_brackets[i][status][1] :
                 taxable_income += (ny_tax_brackets[i][status][1] - ny_tax_brackets[i][status][0]) * ny_tax_brackets[i]["rate"]
-                
+            #If agi is smaller subtract lower threshold from agi and then multiply the difference by the bracket rate. Then the loop breaks
             elif agi <= ny_tax_brackets[i][status][1]:
                 taxable_income += (agi - ny_tax_brackets[i][status][0]) * ny_tax_brackets[i]["rate"]
                 break
@@ -79,13 +88,15 @@ class taxCalculator:
 
         return taxable_income 
         
-    
+    #Calculates federal taxes
     def federal(self, agi, status ):
         taxable_income = 0
+        #Refer to state tax comments
+        #Same process as state tax calculation but with federal tax bracket
         for i in len(federal_brackets):
+            
             if agi > federal_brackets[i][status][1] :
                 taxable_income += (federal_brackets[i][status][1] - federal_brackets[i][status][0]) * federal_brackets[i]["rate"]
-                
             elif agi <= federal_brackets[i][status][1]:
                 taxable_income += (agi - federal_brackets[i][status][0]) * federal_brackets[i]["rate"]
                 break
@@ -94,10 +105,12 @@ class taxCalculator:
         return taxable_income 
     def city(self, agi, status):
         taxable_income = 0
+        #Refer to state tax comments
+        #Same process as state tax calculation but with federal tax bracket
         for i in len(nyc_tax_brackets):
             if agi > nyc_tax_brackets[i][status][1] :
-                taxable_income += (nyc_tax_brackets[i][status][1] - nyc_tax_brackets[i][status][0]) * nyc_tax_brackets[i]["rate"]
                 
+                taxable_income += (nyc_tax_brackets[i][status][1] - nyc_tax_brackets[i][status][0]) * nyc_tax_brackets[i]["rate"]
             elif agi <= nyc_tax_brackets[i][status][1]:
                 taxable_income += (agi - nyc_tax_brackets[i][status][0]) * nyc_tax_brackets[i]["rate"]
                 break
