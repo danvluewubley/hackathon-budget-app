@@ -6,7 +6,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 app = Flask(__name__)
 
-db = sqlite3("sqlite:///users.db")
 
 
 
@@ -21,8 +20,8 @@ csrf = CSRFProtect(app)
         
 @app.route("/")
 def index():
-
-    return render_template("index.html")
+    if request.method == "GET":
+        return render_template("index.html")
 
 @app.route("/login")
 def login():
@@ -36,13 +35,29 @@ def login():
 
 @app.route("/sign-up")
 def signUp():
-    email = request.form.get("email")
-    password = request.form.get("password")
-    confirmation = request.form.get("confirmation")
-    location = request.form.get("location")
-    if password != confirmation:
-        return ValueError
-    hash = generate_password_hash(password)
-    
+    if request.method == "GET":
+        return render_template("signup.html")
+    else:
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        location = request.form.get("location")
+        if password != confirmation:
+            return ValueError
+        hash = generate_password_hash(password)
+        
 
-    return 
+        return 
+
+
+@app.route("/dashboard")
+def dashboard():
+    if request.method == "GET":
+        return render_template("dashboard.html")
+
+
+
+@app.route("/aboutUs")
+def aboutUs():
+    if request.method == "GET":
+        return render_template("aboutus.html")
