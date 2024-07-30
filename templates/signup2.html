@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poller+One&family=Prata&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/signup.css" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <form action="/sign-up" method="post">
+      <p>Income:</p>
+      <input
+        type="text"
+        name="income"
+        placeholder="Enter your income"
+        class="form-control required"
+      />
+      <p>NY or NYC:</p>
+      <select name="ny-or-nyc" required>
+        <option value="1">NY</option>
+        <option value="2">NYC</option>
+      </select>
+      <p>Personal Deductions:</p>
+      <input
+        type="text"
+        name="deduction"
+        placeholder="Enter your personal deduction"
+        class="form-control"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
