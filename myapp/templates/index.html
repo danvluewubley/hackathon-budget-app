@@ -18,13 +18,17 @@
         src="../static/logo.png"
         alt="Not enough budget!"
         class="logo"
-        onclick="location.href='index.html';" 
-      />  <!--Flask URL-->
+        onclick="location.href='index.html';"
+      />
+      <!--Flask URL-->
       <div class="navbar-text">
         <ul>
-          <li><a href="/dashboard">Dashboard</a></li> <!--Flask URL-->
-          <li><a href="/aboutUs">About Us</a></li> <!--Flask URL-->
-          <li><a href="/login">Login</a></li> <!--Flask URL-->
+          <li><a href="/dashboard">Dashboard</a></li>
+          <!--Flask URL-->
+          <li><a href="/aboutUs">About Us</a></li>
+          <!--Flask URL-->
+          <!-- <li><a href="/login">Login</a></li> Flask URL -->
+          <li><a>Login</a></li>
         </ul>
       </div>
     </nav>
@@ -32,7 +36,8 @@
       <div class="article-text">
         <h1 class="heading">Your Budgeting</h1>
         <h2 class="smaller-heading">Begin Your Budgeting Adventure</h2>
-        <button class="sign-up" onclick="location.href='#';"> <!--Flask URL-->
+        <button class="sign-up" onclick="location.href='#';">
+          <!--Flask URL-->
           Get Started
         </button>
       </div>
@@ -44,5 +49,34 @@
         />
       </div>
     </article>
+    <div class="wrapper">
+      <form>
+        <div class="container-wrapper">
+          <h2>Login</h2>
+          <div class="form-component">
+            <p class="form-text">Email</p>
+            <input
+              type="text"
+              name="email"
+              placeholder="Enter your email"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-component">
+            <p class="form-text">Password</p>
+            <input
+              type="text"
+              name="password"
+              placeholder="Enter your password"
+              class="form-control"
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+          <p class="signup-text">Make an <a href="signup1.html"><span class="underline">account</span></a></p>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
