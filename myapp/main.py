@@ -36,7 +36,7 @@ def dashboard():
         
         instance = taxCalculator(income, agiVal, status, deductions)
 
-        
+
 
         return render_template("dashboard.html")
 
@@ -46,3 +46,7 @@ def dashboard():
 def aboutUs():
     if request.method == "GET":
         return render_template("aboutus.html")
+    
+@main.route("/badges")
+def badges():
+    return render_template("badges.html")
