@@ -52,4 +52,5 @@ def dashboard():
 
 @main.route("/aboutUs")
 def aboutUs():
+    if request.method == "GET":
         return render_template("aboutus.html")
