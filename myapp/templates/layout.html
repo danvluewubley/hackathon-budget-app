@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/aboutus.css" />
+    <link rel="stylesheet" href="../static/navbar.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,15 +28,12 @@
       <a href="/">
         <img src="../static/logo.png" alt="Not enough budget!" class="logo" />
       </a>
-      <!--Flask URL-->
       <div class="navbar-text">
         <ul>
+          <li><a href="#">Badges</a></li>
           <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-          <!--Flask URL-->
           <li><a href="{{ url_for('main.aboutUs') }}">About Us</a></li>
-          <!--Flask URL-->
           <li><a href="{{ url_for('auth.login_post') }}">Login</a></li>
-          <!--Flask URL-->
         </ul>
       </div>
     </nav>
