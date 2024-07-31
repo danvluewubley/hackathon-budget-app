@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
     <link rel="stylesheet" href="../static/index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poller+One&family=Prata&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <title>Budgeting Made Simple</title>
-  </head>
-  <body>
-    <nav>
-      <img
-        src="../static/logo.png"
-        alt="Not enough budget!"
-        class="logo"
-        onclick="location.href='index.html';"
-      />
-      <!--Flask URL-->
-      <div class="navbar-text">
-        <ul>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <!--Flask URL-->
-          <li><a href="/aboutUs">About Us</a></li>
-          <!--Flask URL-->
-          <!-- <li><a href="/login">Login</a></li> Flask URL -->
-          <li><a>Login</a></li>
-        </ul>
-      </div>
-    </nav>
     <article>
       <div class="article-text">
         <h1 class="heading">Your Budgeting</h1>
@@ -78,5 +52,4 @@
         </div>
       </form>
     </div>
-  </body>
-</html>
+{% endblock %}
