@@ -23,18 +23,8 @@ def dashboard():
         income = 0 
         agiVal = False
         status = None
-        if current_user.isauthenticated():
-            user = current_user
-            stat = Stats.query.get(user.id)
-            income = stat.income
-            deductions = stat.deductions
-            status = stat.status
-        else:
-            income = request.form.get("income")
-            deductions = request.form.get("deductions")
-            status = request.form.get("status")
+        user = current_user
         
-        instance = taxCalculator(income, agiVal, status, deductions)
 
 
 
