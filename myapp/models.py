@@ -20,3 +20,18 @@ class Stats (db.Model):
     income = db.Column(db.Integer)
     deductions = db.Column(db.Integer)
     request = db.relationship("Child", backref=backref("users", uselist=False))
+
+class Savings (db.Model):
+    __tablename__ = 'savings'
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    request = db.relationship("Child", backref=backref("users", uselist=False))
+
+class Necessities (db.Model):
+    __tablename__ = 'necessities'
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    request = db.relationship("Child", backref=backref("users", uselist=False))
+
+class Wants(db.Model):
+    __tablename__ = 'wants'
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    request = db.relationship("Child", backref=backref("users", uselist=False))
