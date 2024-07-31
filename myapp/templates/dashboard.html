@@ -5,6 +5,37 @@
 {% endblock %}
 
 {% block main %}
-
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <section>
+        <div class="left-side">
+            <div class="budget-plan">
+                <h2>Budget Plan</h2>
+                <img src="../static/add.png" alt="Sorry low on budget!">
+            </div>
+            <div class="tax">
+                <h2>Tax</h2>
+                <div class="tax-description">
+                    <p>OASDI: </p>
+                    <p>Medicare: </p>
+                    <p>Federal Withholding: </p>
+                    <p>State Tax - NY: </p>
+                    <p>City Tax - NY: </p>
+                    <p>New York Paid Family Leave: </p>
+                </div>
+            </div>
+        </div>
+        <aside>
+            <div class="necessities">
+                <h2 class="section-heading"><span class="necessities-format">Necessities</span></h2>
+            </div>
+            <div class="savings">
+                <h2 class="section-heading"><span class="savings-format">Savings</span></h2>
+            </div>
+            <div class="wants">
+                <h2 class="section-heading"><span class="wants-format">Wants</span></h2>
+            </div>
+        </aside>
+    </section>
+    
 
 {% endblock %}
