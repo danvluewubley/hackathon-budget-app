@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 main = Blueprint('main', __name__)
 
-from .helpers import taxCalculator, budgetOptions
+from .helpers import taxCalculator, budgetOptions, ny_tax_brackets, nyc_tax_brackets, federal_brackets
 from werkzeug.security import check_password_hash, generate_password_hash
 from .models import db, User, Stats
 
@@ -15,37 +15,29 @@ def index():
 
 
 
-@main.route("/sign-up")
-def signUp():
-    if request.method == "GET":
-        return render_template("signup.html")
-    else:
-        email1 = request.form.get("email")
-        password = request.form.get("password")
-        confirmation = request.form.get("confirmation")
-        location1 = request.form.get("location")
-        if password != confirmation:
-            return ValueError
-        hash = generate_password_hash(password)
-        
-        new_account = User(email=email1, password=hash, location=location1)
-        db.session.add(new_account)
-
-        income1 = request.form.get("income")
-
-        new_info = Stats(income=income1,  )
-
-        db.session.add(new_info)
-
-        db.session.commit()
-
-        return redirect("/dashboard")
-
-
 @main.route("/dashboard")
 def dashboard():
     if request.method == "GET":
-        user = current_user
+        user = None
+        deductions = 0
+        income = 0 
+        agiVal = False
+        status = None
+        if current_user.isauthenticated():
+            user = current_user
+            stat = Stats.query.get(user.id)
+            income = stat.income
+            deductions = stat.deductions
+            status = stat.status
+        else:
+            income = request.form.get("income")
+            deductions = request.form.get("deductions")
+            status = request.form.get("status")
+        
+        instance = taxCalculator(income, agiVal, status, deductions)
+
+        
+
         return render_template("dashboard.html")
 
 

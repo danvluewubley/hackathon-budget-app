@@ -15,6 +15,8 @@ class User(UserMixin, db.Model):
 
 class Stats (db.Model):
     __tablename__ = 'stats'
-    user_id = db.Column(db.Integer, ForeignKey('request.id'))
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
     stats_id = db.Column(db.Integer, primary_key=True)
-    request = db.relationship("Child", backref=backref("request", uselist=False))
+    income = db.Column(db.Integer)
+    deductions = db.Column(db.Integer)
+    request = db.relationship("Child", backref=backref("users", uselist=False))
