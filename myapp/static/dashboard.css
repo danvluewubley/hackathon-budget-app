@@ -88,7 +88,7 @@ section {
   color: white;
 }
 
-.budget-plan img {
+img {
   width: 166px;
   align-self: center;
 }
@@ -171,4 +171,37 @@ aside {
   position: absolute;
   top: 20px;
   left: -160px;
+}
+
+.barcontainer {
+  position: relative;
+  width: 10px;
+  height: 90%;
+  margin: auto 0;
+  margin-left: 70px;
+  background-color: white;
+}
+
+.bar {
+  background-color: #9bc9c7;
+  border: 1px solid black;
+}
+
+#bar1 {
+  height: 40%;
+}
+
+#bar2 {
+  height: 30%;
+}
+
+#bar3 {
+  height: 30%;
+}
+
+.img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
