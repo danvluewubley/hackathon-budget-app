@@ -82,58 +82,76 @@
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div id="modal-header" class="modal-header">
-              <input type="hidden" id="type" value="necessities">
-			  <h5 class="modal-title" id="modalTitle"></h5>
+        <input type="hidden" id="type" value="necessities">
+			  <h5 class="modal-title" id="modalTitle">Necessities</h5>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-              <button type="submit" class="btn btn-primary submit">Save</button>
-			  <p  id="message"></p>
+        <p>How much money do you want to put into rent?</p>
+        <input type="text" placeholder="Input your rent amount" id="rent">
+        <p>How much money do you want to put into groceries?</p>
+        <input type="text" placeholder="Input your groceries amount" id="groceries">
+        <p>How much money do you want to put into other necessities?</p>
+        <input type="text" placeholder="Input your other necessities amount" id="other">
+        <br>
+        <button type="submit" class="btn btn-primary submit">Save</button>
+			  <p id="message"></p>
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
 			</div>
 		  </div>
 		</div>
 	  </div>
 
 
-      <div class="modal" id="modal-s" tabindex="-1">
+    <div class="modal" id="modal-s" tabindex="-1">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div id="modal-header" class="modal-header">
-              <input type="hidden" id="type" value="savings">
-			  <h5 class="modal-title" id="modalTitle"></h5>
+        <input type="hidden" id="type" value="savings">
+			  <h5 class="modal-title" id="modalTitle">Savings</h5>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-			  <p  id="message"></p>
-              <button type="submit" class="btn btn-primary submit">Save</button>
+        <p>How much money do you want to put into emergency funds?</p>
+        <input type="text" placeholder="Input your emergency funds amount" id="emergency">
+        <p>How much money do you want to put into retirement?</p>
+        <input type="text" placeholder="Input your retirement amount" id="retirement">
+        <p>How much money do you want to put into debt?</p>
+        <input type="text" placeholder="Input your debt amount" id="debts">
+        <br>
+			  <p id="message"></p>
+        <button type="submit" class="btn btn-primary submit">Save</button>
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
 			</div>
 		  </div>
 		</div>
 	  </div>
 
-      <div class="modal" id="modal-w" tabindex="-1">
+    <div class="modal" id="modal-w" tabindex="-1">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div id="modal-header" class="modal-header">
-              <input type="hidden" id="type" value="wants">
-			  <h5 class="modal-title" id="modalTitle"></h5>
+        <input type="hidden" id="type" value="wants">
+			  <h5 class="modal-title" id="modalTitle">Wants</h5>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-			  <p  id="message"></p>
-              <button type="submit" class="btn btn-primary submit">Save</button>
+			  <p>How much money do you want to put into vacation?</p>
+        <input type="text" placeholder="Input your vacation amount" id="vacation">
+        <p>How much money do you want to put into clothing?</p>
+        <input type="text" placeholder="Input your clothing amount" id="clothing">
+        <p>How much money do you want to put into other wants?</p>
+        <input type="text" placeholder="Input your other wants amount" id="other2">
+        <br>
+			  <p id="message"></p>
+        <button type="submit" class="btn btn-primary submit">Save</button>
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
 			</div>
 		  </div>
 		</div>
