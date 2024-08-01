@@ -24,7 +24,18 @@ def dashboard():
         agiVal = False
         status = None
         user = current_user
-        
+        """
+        req = request.get_json()
+        if consistency(checkVars):
+            res = make_response(jsonify({
+                    "code": "green"
+            }), 200)
+            return res
+        else:
+            res = make_response(jsonify({
+                "code": "red"
+            }), 200)
+            return res"""
 
 
 
