@@ -28,13 +28,18 @@
         <aside>
             <div class="necessities">
                 <h2 class="section-heading"><span class="necessities-format">Necessities</span></h2>
+                
                 <div class="barcontainer">
                     <div class="bar" id="bar1"></div>
                     <div class="bar" id="bar2"></div>
                     <div class="bar" id="bar3"></div>
                 </div>
+                <button class="transparent" id="necessitiesbtn"> <img src="../static/add.png" alt="Sorry low on budget!"></button>
                 <div class="img-container">
-                    <img src="../static/add.png" alt="Sorry low on budget!">
+                   
+                    <p id="rent-display">Rent $100</p>
+                    <p id="groceries-display">Groceries $100</p>
+                    <p id="other-display">Other $100</p>
                 </div>
             </div>
             <div class="savings">
@@ -44,8 +49,12 @@
                     <div class="bar" id="bar2"></div>
                     <div class="bar" id="bar3"></div>
                 </div>
+                <button class="transparent" id="savingsbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
                 <div class="img-container">
-                    <img src="../static/add.png" alt="Sorry low on budget!">
+                    
+                    <p id="emergency-display">Emergency Fund $100</p>
+                    <p id="retirement-display">Retirement $100</p>
+                    <p id="debt-display">Debts $100</p>
                 </div>
             </div>
             <div class="wants">
@@ -55,12 +64,80 @@
                     <div class="bar" id="bar2"></div>
                     <div class="bar" id="bar3"></div>
                 </div>
+                <button class="transparent" id="wantBtn"><img src="../static/add.png" alt="Sorry low on budget!"> </button>
                 <div class="img-container">
-                    <img src="../static/add.png" alt="Sorry low on budget!">
+                    <p id="vacation-display">Vacation $100</p>
+                    <p id="clothing-display">Clothing $100</p>
+                    <p id="other2-display">Other $100</p>
                 </div>
+
             </div>
         </aside>
     </section>
+
+
+
+
+    <div class="modal" id="modal-n" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div id="modal-header" class="modal-header">
+              <input type="hidden" id="type" value="necessities">
+			  <h5 class="modal-title" id="modalTitle"></h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+              <button type="submit" class="btn btn-primary submit">Save</button>
+			  <p  id="message"></p>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+      <div class="modal" id="modal-s" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div id="modal-header" class="modal-header">
+              <input type="hidden" id="type" value="savings">
+			  <h5 class="modal-title" id="modalTitle"></h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <p  id="message"></p>
+              <button type="submit" class="btn btn-primary submit">Save</button>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+      <div class="modal" id="modal-w" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div id="modal-header" class="modal-header">
+              <input type="hidden" id="type" value="wants">
+			  <h5 class="modal-title" id="modalTitle"></h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <p  id="message"></p>
+              <button type="submit" class="btn btn-primary submit">Save</button>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  <button type="button" id="home" class="btn btn-primary">Return To Home Page</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
     
 
 {% endblock %}

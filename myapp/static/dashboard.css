@@ -205,3 +205,11 @@ aside {
   justify-content: center;
   align-items: center;
 }
+
+
+.transparent {
+  outline: none !important;
+  background-color: transparent !important;
+  appearance: none;
+  border: none;
+}
