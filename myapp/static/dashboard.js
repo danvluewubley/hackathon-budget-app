@@ -54,6 +54,7 @@ window.onload = function() {
                 body: JSON.stringify({
                     vars: vars,
                     type: type,
+                    location: "specifics"
                 }),
                 cache: "no-cache",
                 headers: new Headers({

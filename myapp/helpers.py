@@ -45,13 +45,22 @@ class taxCalculator:
             self.agi = self.income
         else:
             self.agi = self.fagi(income, status, deductions)
+        self.social = self.social_sec(income)
+        self.medi = self.medicare(income, status)
 
+        self.agi = self.agi - self.medi
+        self.agi = self.agi - self.social
         #Calculated the amount of taxes you must pay
         self.taxes += self.federal(self.agi,status)
         self.taxes += self.state(self.agi,status)
         self.taxes += self.city(self.agi,status)
 
+        self.fed = self.federal(self.agi, status)
+        self.cit = self.federal(self.agi, status)
+        self.sta = self.state(self.agi, status)
         self.leftover = (self.income - self.taxes)/12
+
+
     
     #Calculates Federal Adjusted Gross Income
     def fagi(self, income, status, deductions):
@@ -117,7 +126,33 @@ class taxCalculator:
         
 
         return taxable_income 
+    
+    
+    def social_sec(self, income):
+        taxable_income = 0 
+        if income <= 168800:
+            taxable_income = 0.062 * income
+        else:
+            taxable_income = 0.062 * 168800
 
+        return taxable_income
+    
+
+    def medicare(self, income, status):
+        taxable_income = 0
+        if status == "mfj":
+            if income < 250000:
+                taxable_income = 0.0145 * income
+            else:
+                taxable_income= (0.0145 + 0.009) * income
+        else:
+            if income < 200000:
+                taxable_income =  0.0145 * income
+            else: 
+                taxable_income = (0.0145 + 0.009)* income
+
+        return taxable_income
+        
 
 class budgetOptions:
 
