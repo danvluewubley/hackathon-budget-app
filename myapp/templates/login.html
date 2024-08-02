@@ -5,7 +5,27 @@
 {% endblock %}
 
 {% block main %}
-
-
+    <script type="text/javascript" src="../static/login.js"></script>
+    <link rel="stylesheet" href="../static/login.css">
+    <div class="modal" id="modal-log" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div id="modal-header" class="modal-header">
+            <input type="hidden" id="type" value="wants">
+            <h5 class="modal-title" id="modalTitle">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Email:</p>
+            <input type="text" placeholder="Input your email" id="email">
+            <p>Password:</p>
+            <input type="text" placeholder="Input your password" id="password">
+            <br>
+            <p id="message"></p>
+            <button type="submit" class="btn btn-primary submit">Save</button>
+        </div>
+        </div>
+    </div>
+	</div>
 
 {% endblock %}

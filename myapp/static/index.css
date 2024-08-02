@@ -194,3 +194,8 @@ form input:focus{
 .underline{
   text-decoration: underline;
 }
+
+nav button{
+  color: white;
+  font-weight: 300;
+}
