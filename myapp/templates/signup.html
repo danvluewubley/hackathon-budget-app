@@ -1,3 +1,14 @@
+{% for message in get_flashed_messages() %}
+  
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+{% endfor %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +24,31 @@
     <title>Sign Up</title>
   </head>
   <body>
-    <form action="/sign-up" method="post">
+    <form action="/sign-up" method="POST">
+      <p>Email:</p>
+      <input
+        type="text"
+        name="email"
+        placeholder="Enter your email"
+        class="form-control"
+        required
+      />
+      <p>Password:</p>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        class="form-control"
+        required
+      />
+      <p>Re-enter Password:</p>
+      <input
+        type="password"
+        name="confirmation"
+        placeholder="Re-enter your password"
+        class="form-control"
+        required
+      />
       <p>Income:</p>
       <input
         type="text"
@@ -31,6 +66,14 @@
         type="text"
         name="deduction"
         placeholder="Enter your personal deduction"
+        class="form-control"
+        required
+      />
+      <p>Status:</p> <!--Select-->
+      <input
+        type="text"
+        name="status"
+        placeholder="Enter your filing status"
         class="form-control"
         required
       />

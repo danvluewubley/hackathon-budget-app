@@ -29,32 +29,96 @@ def login_post():
         return render_template("login.html")
     
 
-@auth.route("/sign-up")
+# @auth.route("/sign-up", methods=["GET", "POST"])
+# def signUp():
+#     if request.method == "GET":
+#         return render_template("signup.html")
+#     if request.method == "POST":
+#         email1 = request.form.get("email")
+#         password = request.form.get("password")
+#         confirmation = request.form.get("confirmation")
+#         location1 = request.form.get("ny-or-nyc")
+#         deduction1 = request.form.get("deduction")
+#         status1 = request.form.get("status")
+#         if password != confirmation:
+#             return ValueError
+#         hash = generate_password_hash(password)
+        
+#         new_account = User(email=email1, password=hash)
+
+#         db.session.add(new_account)
+
+#         db.session.commit()
+
+#         current = User.query.filter_by(email=email1)
+#         print(111111111)
+#         print(current.id)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+#         print(111111111)
+
+#         income1 = request.form.get("income")
+
+#         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
+
+#         db.session.add(new_info)
+
+#         db.session.commit()
+
+
+#         return redirect(url_for("main.dashboard"))
+    
+@auth.route("/sign-up", methods=["GET", "POST"])
 def signUp():
     if request.method == "GET":
         return render_template("signup.html")
-    else:
+    
+    if request.method == "POST":
         email1 = request.form.get("email")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-        location1 = request.form.get("location")
+        location1 = request.form.get("ny-or-nyc")
+        deduction1 = request.form.get("deduction")
+        status1 = request.form.get("status")
+        
         if password != confirmation:
-            return ValueError
+            return "Passwords do not match", 400
+        
         hash = generate_password_hash(password)
         
-        new_account = User(email=email1, password=hash, location=location1)
-        db.session.add(new_account)
+        new_account = User(email=email1, password=hash)
+        
+        try:
+            db.session.add(new_account)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return f"An error occurred while creating the account: {e}", 500
 
+        current = User.query.filter_by(email=email1).first()
+        
+        if not current:
+            return "User not found after creation", 500
+        
         income1 = request.form.get("income")
 
-        new_info = Stats(income=income1,  )
+        new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
 
-        db.session.add(new_info)
+        try:
+            db.session.add(new_info)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return f"An error occurred while creating user stats: {e}", 500
 
-        db.session.commit()
-
-        return redirect("/dashboard")
-    
+        return redirect(url_for("main.dashboard"))
 
 @login_required
 @auth.route("/logout")
