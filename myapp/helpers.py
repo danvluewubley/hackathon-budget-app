@@ -168,8 +168,10 @@ class budgetOptions:
         return dict
     
 
-    def custom(self, rent, necessities, wants, budget):
+    def custom(self, savings, necessities, wants, budget):
         percents = {}
-        percents['self'] = 0
+        percents['necessities'] = necessities * budget
+        percents['savings'] = savings * budget
+        percents['']
 
         return
