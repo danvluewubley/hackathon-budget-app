@@ -11,7 +11,7 @@
         <div class="left-side">
             <div class="budget-plan">
                 <h2>Budget Plan</h2>
-                <img src="../static/add.png" alt="Sorry low on budget!">
+                <button class="transparent" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
             </div>
             <div class="tax">
                 <h2>Tax</h2>
@@ -86,7 +86,57 @@
     </section>
 
 
+    <div class="modal" id="modal-b" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div id="modal-header" class="modal-header">
+        <input type="hidden" id="type" value="budget">
+			  <h5 class="modal-title" id="modalTitle">Budget</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+        <p>Pick a Plan</p>
+        <select name="budget-options" required id="custom">
+          <option value="1">Necessities (20%) Savings (50%) Wants (30%)</option>
+          <option value="2">Necessities (70%) Savings (20%) Wants (10%)</option>
+          <option value="3">Custom</option>
+        </select>
+        <br>
+			  <p id="message"></p>
+        <button type="submit" class="btn btn-primary submit">Save</button>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
 
+    <div class="modal" id="modal-custom" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div id="modal-header" class="modal-header">
+        <input type="hidden" id="type" value="budget-custom">
+			  <h5 class="modal-title" id="modalTitle">Budget Plan</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+        <p>Input percentage towards necessities</p>
+        <input type="text" placeholder="necessities" id="necessities">
+        <p>Input percentage towards savings?</p>
+        <input type="text" placeholder="savings" id="savings">
+        <p>Input percentage towards wants</p>
+        <input type="text" placeholder="wants" id="wants">
+        <br>
+			  <p id="message"></p>
+        <button type="submit" class="btn btn-primary submit">Save</button>
+			</div>
+			<div class="modal-footer" id="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
 
     <div class="modal" id="modal-n" tabindex="-1">
 		<div class="modal-dialog">
@@ -114,7 +164,7 @@
 		</div>
 	  </div>
 
-
+    
     <div class="modal" id="modal-s" tabindex="-1">
 		<div class="modal-dialog">
 		  <div class="modal-content">

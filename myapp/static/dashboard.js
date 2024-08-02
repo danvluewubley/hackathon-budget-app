@@ -22,6 +22,21 @@ window.onload = function() {
             myModal.show()
         })
 
+        let budget = document.getElementById("budgetbtn");
+        budget.addEventListener("click", function () {
+          console.log("Its working");
+          const myModal = new bootstrap.Modal("#modal-b");
+          myModal.show();
+        });
+
+        let custom = document.getElementById("custom");
+        custom.addEventListener("change", function () {
+          if (custom.value == 3){
+            const myModal = new bootstrap.Modal("#modal-custom");
+            myModal.show();
+          }
+        });
+
         let submit = document.getElementsByClassName("submit");
         
         for (let i = 0; i < submit.length; i++)
@@ -96,6 +111,27 @@ window.onload = function() {
                     }
                 })
             })
+
+            fetch(`${window.origin}/budget`, {
+              method: "POST",
+              credentials: "include",
+              body: JSON.stringify({
+                vars: vars,
+                type: type,
+                location: "specifics",
+              }),
+              cache: "no-cache",
+              headers: new Headers({
+                "content-type": "application/json",
+                //"X-CSRF-Token": csrf_token,
+              }),
+            }).then(function (response) {
+              if (response.status !== 200) {
+                console.log("Failure");
+                return;
+              }
+              response.json().then(function (data) {});
+            });
         })
 
         

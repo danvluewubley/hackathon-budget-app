@@ -261,3 +261,12 @@ aside {
   font-size: 20px;
   margin-right: 10px;
 }
+
+.modal-body select {
+  width: 80%;
+  height: 50px;
+  padding-left: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
