@@ -168,5 +168,8 @@ class budgetOptions:
         return dict
     
 
-    def custom(self, budget, goals):
+    def custom(self, rent, necessities, wants, budget):
+        percents = {}
+        percents['self'] = 0
+
         return
