@@ -1,12 +1,11 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
 from .models import User, Stats
 from . import db
 
 auth = Blueprint('auth', __name__)
-
-
+        
 @auth.route('/login', methods=["POST"])
 def login_post():    
     data = request.json
@@ -16,18 +15,14 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
-
-    # check if user actually exists
-    # take the user supplied password, hash it, and compare it to the hashed password in database
     if not user or not check_password_hash(user.password, password): 
-        flash('Please check your login details and try again.')
+        flash('Please check your login details and try again.', 'danger')
+        return jsonify({"success": False}), 401
 
-    # if the above check passes, then we know the user has the right credentials
-    if check_password_hash(user.password, password):
-        flash("login successful")
-        login_user(user, remember=remember)
-    
-    return redirect(url_for("main.dashboard"))
+    # Successful login
+    login_user(user, remember=remember)
+    flash("Login successful!", 'success')
+    return jsonify({"success": True}), 200  
     
 
 

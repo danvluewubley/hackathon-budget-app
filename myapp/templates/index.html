@@ -4,19 +4,10 @@
   Home
 {% endblock %}
 
-{% block content%}
-
-  {% for message in get_flashed_messages() %}
-    
-
-      {{ message }}
-
-  {% endfor %}
-  {% endblock %}
-
 {% block main %}
 
   <link rel="stylesheet" href="../static/index.css" />
+
   <article>
     <div class="article-text">
       <h1 class="heading">Your Budgeting</h1>
