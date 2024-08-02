@@ -11,8 +11,8 @@ Ensure you have the following installed on your machine:
 ### Steps
 1. Clone the Repository
 ```
-git clone https://github.com/yourusername/yourproject.git
-cd yourproject
+git clone https://github.com/danvluewubley/hackathon-budget-app.git
+cd hackathon-budget-app
 ```
 
 2. Create a Virtual Environment
