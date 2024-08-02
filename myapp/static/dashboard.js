@@ -83,7 +83,32 @@ window.onload = function() {
                     return ;
                 }
                 response.json().then(function (data) {
-                    
+                    let vars = data['vars']
+                    let type = data['type']
+                    if (type == "necessities"){
+                        let rent = document.getElementById("rent-display");
+                        rent.innerHTML = vars[0]
+                        let groceries = document.getElementById("groceries-display");
+                        groceries.innerHTML = vars[1]
+                        let other = document.getElementById("other-display");
+                        other.innerHTML = vars[2]
+                    }
+                    else if (type == "savings") {
+                        let emergency = document.getElementById("emergency-display");
+                        emergency.innerHTML = vars[0]
+                        let retirement = document.getElementById("retirement-display");
+                        retirement.innerHTML = vars[1]
+                        let debt = document.getElementById("debt-display");
+                        debt.innerHTML = vars[2]
+                    }
+                    else {
+                        let vacation = document.getElementById("vacation-display");
+                        vacation.innerHTML = vars[0]
+                        let clothing = document.getElementById("clothing-display");
+                        retirement.innerHTML = vars[1]
+                        let other = document.getElementById("other2-display");
+                        other.innerHTML = vars[2]
+                    }
                 })
             })
 

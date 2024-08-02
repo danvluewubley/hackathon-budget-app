@@ -18,25 +18,10 @@ def index():
 @main.route("/dashboard")
 def dashboard():
     if request.method == "GET":
-        user = None
-        deductions = 0
-        income = 0 
-        agiVal = False
-        status = None
-        user = current_user
-        """
-        req = request.get_json()
-        if consistency(checkVars):
-            res = make_response(jsonify({
-                    "code": "green"
-            }), 200)
-            return res
-        else:
-            res = make_response(jsonify({
-                "code": "red"
-            }), 200)
-            return res"""
-        return render_template("dashboard.html")
+        #grab = Stats.query.filter_by(user_id=current_user.id)
+        #info = taxCalculator(grab.info, False, grab.status, grab.deductions)
+        info = 0
+        return render_template("dashboard.html", info=info)
     else:
         req = request.get_json()
         if req["location"] == "specifics":
@@ -46,7 +31,7 @@ def dashboard():
                 rent1 = vars[0]
                 groceries1 = vars[1]
                 other1 = vars[2]
-                check = Necessities.query.get(current_user.id)
+                check = Necessities.query.filter_by(user_id=current_user.id)
                 if check is None:
                     new_instance = Necessities(rent=rent1, groceries=groceries1, other=other1)
                     db.session.add(new_instance)
@@ -66,7 +51,7 @@ def dashboard():
                 emergency1 = vars[0]
                 retirement1 = vars[1]
                 debt1 = vars[2]
-                check = Savings.query.get(current_user.id)
+                check = Savings.query.filter_by(user_id=current_user.id)
                 if check is None: 
                     new_instance = Savings(emergency=emergency1, retirement=retirement1, debt=debt1)
                     db.session.add(new_instance)
@@ -86,7 +71,7 @@ def dashboard():
                 vacation1 = vars[0]
                 clothing = vars[1]
                 other = vars[2]
-                check = Wants.query.get(current_user.id)
+                check = Wants.query.filter_by(user_id=current_user.id)
                 if check is None:
                     new_instance = Wants(vacation=vacation1, clothing=clothing, other=other)
                     db.session.add(new_instance)
@@ -107,7 +92,7 @@ def dashboard():
 @main.route("/budget", methods=["POST"])
 def budget():
     # budget logic goes here
-    
+
     return 
 
 @main.route("/aboutUs")
