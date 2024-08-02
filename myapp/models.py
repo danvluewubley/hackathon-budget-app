@@ -3,9 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
-from . import db
 
-
+db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -24,6 +23,7 @@ class Stats (db.Model):
     income = db.Column(db.Integer)
     deductions = db.Column(db.Integer)
     status = db.Column(db.Integer)
+    location = db.Column(db.String(100))
 
 class Savings (db.Model):
     __tablename__ = 'savings'
