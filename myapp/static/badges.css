@@ -109,6 +109,10 @@ a {
   width: 200px;
 }
 
-#iron, #gold, #emerald, #diamond {
+#iron-grey, #gold-grey, #emerald-grey, #diamond-grey {
   background: rgba(128, 128, 128, 0.5);
+}
+
+#iron-none, #gold-none, #emerald-none, #diamond-none {
+  background: none;
 }

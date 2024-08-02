@@ -7,74 +7,34 @@ from . import db
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login', methods=['GET','POST'])
-def login_post():
+@auth.route('/login', methods=["GET","POST"])
+def login_post():    
     if request.method == "POST":
-        email = request.form.get('email')
-        password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+        remember = True if data.get('remember') else False
 
         user = User.query.filter_by(email=email).first()
+
 
         # check if user actually exists
         # take the user supplied password, hash it, and compare it to the hashed password in database
         if not user or not check_password_hash(user.password, password): 
+            print("wrong")
             flash('Please check your login details and try again.')
-            return redirect(url_for('auth.login')) # if user doesn't exist or password is wrong, reload the page
+            return redirect('/login') # if user doesn't exist or password is wrong, reload the page
 
         # if the above check passes, then we know the user has the right credentials
-        login_user(user, remember=remember)
-        return redirect("/dashboard")
-    else: 
+        if check_password_hash(user.password, password):
+            print("login successful")
+            login_user(user, remember=remember)
+            return redirect(url_for("main.dashboard"))
+    else:
         return render_template("login.html")
     
 
-# @auth.route("/sign-up", methods=["GET", "POST"])
-# def signUp():
-#     if request.method == "GET":
-#         return render_template("signup.html")
-#     if request.method == "POST":
-#         email1 = request.form.get("email")
-#         password = request.form.get("password")
-#         confirmation = request.form.get("confirmation")
-#         location1 = request.form.get("ny-or-nyc")
-#         deduction1 = request.form.get("deduction")
-#         status1 = request.form.get("status")
-#         if password != confirmation:
-#             return ValueError
-#         hash = generate_password_hash(password)
-        
-#         new_account = User(email=email1, password=hash)
 
-#         db.session.add(new_account)
-
-#         db.session.commit()
-
-#         current = User.query.filter_by(email=email1)
-#         print(111111111)
-#         print(current.id)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-
-#         income1 = request.form.get("income")
-
-#         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
-
-#         db.session.add(new_info)
-
-#         db.session.commit()
-
-
-#         return redirect(url_for("main.dashboard"))
-    
 @auth.route("/sign-up", methods=["GET", "POST"])
 def signUp():
     if request.method == "GET":
@@ -124,4 +84,4 @@ def signUp():
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect("/index")
+    return redirect("/")
