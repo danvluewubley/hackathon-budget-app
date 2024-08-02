@@ -20,7 +20,7 @@ class Stats (db.Model):
     income = db.Column(db.Integer)
     deductions = db.Column(db.Integer)
     status = db.Column(db.Integer)
-    request = db.relationship("Child", backref=backref("users", uselist=False))
+    user = db.relationship("User", backref=backref("users", uselist=False))
 
 class Savings (db.Model):
     __tablename__ = 'savings'
@@ -29,7 +29,7 @@ class Savings (db.Model):
     emergency = db.Column(db.Integer)
     retirement = db.Column(db.Integer)
     debts = db.Column(db.Integer)
-    request = db.relationship("Child", backref=backref("users", uselist=False))
+    user = db.relationship("User", backref=backref("users", uselist=False))
 
 class Necessities (db.Model):
     __tablename__ = 'necessities'
@@ -38,7 +38,7 @@ class Necessities (db.Model):
     rent = db.Column(db.Integer)
     groceries = db.Column(db.Integer)
     other = db.Column(db.Integer)
-    request = db.relationship("Child", backref=backref("users", uselist=False))
+    user = db.relationship("User", backref=backref("users", uselist=False))
 
 class Wants(db.Model):
     __tablename__ = 'wants'
@@ -47,4 +47,4 @@ class Wants(db.Model):
     vacation = db.Column(db.Integer)
     clothing = db.Column(db.Integer)
     other = db.Column(db.Integer)
-    request = db.relationship("Child", backref=backref("users", uselist=False))
+    user = db.relationship("User", backref=backref("users", uselist=False))
