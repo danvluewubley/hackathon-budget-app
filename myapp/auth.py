@@ -7,38 +7,34 @@ from . import db
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login', methods=["GET","POST"])
+@auth.route('/login', methods=["POST"])
 def login_post():    
-    if request.method == "POST":
-        data = request.json
-        email = data.get('email')
-        password = data.get('password')
-        remember = True if data.get('remember') else False
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    remember = True if data.get('remember') else False
 
-        user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
 
 
-        # check if user actually exists
-        # take the user supplied password, hash it, and compare it to the hashed password in database
-        if not user or not check_password_hash(user.password, password): 
-            print("wrong")
-            flash('Please check your login details and try again.')
-            return redirect('/login') # if user doesn't exist or password is wrong, reload the page
+    # check if user actually exists
+    # take the user supplied password, hash it, and compare it to the hashed password in database
+    if not user or not check_password_hash(user.password, password): 
+        flash('Please check your login details and try again.')
 
-        # if the above check passes, then we know the user has the right credentials
-        if check_password_hash(user.password, password):
-            print("login successful")
-            login_user(user, remember=remember)
-            return redirect(url_for("main.dashboard"))
-    else:
-        return render_template("login.html")
+    # if the above check passes, then we know the user has the right credentials
+    if check_password_hash(user.password, password):
+        flash("login successful")
+        login_user(user, remember=remember)
+    
+    return redirect(url_for("main.dashboard"))
     
 
 
 @auth.route("/sign-up", methods=["GET", "POST"])
 def signUp():
     if request.method == "GET":
-        return render_template("signup.html")
+        return render_template("signup.html", title="Sign Up")
     
     if request.method == "POST":
         email1 = request.form.get("email")
@@ -77,6 +73,8 @@ def signUp():
         except Exception as e:
             db.session.rollback()
             return f"An error occurred while creating user stats: {e}", 500
+        
+        login_user(current)
 
         return redirect(url_for("main.dashboard"))
 

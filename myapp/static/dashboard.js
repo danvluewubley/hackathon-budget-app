@@ -2,37 +2,37 @@ console.log("Is this file linked");
 
 
 window.onload = function() {
+  var myModal;
         console.log("First check passed")
         let savings = document.getElementById("savingsbtn");
         savings.addEventListener('click', function(){
-            const myModal = new bootstrap.Modal('#modal-s');
+            myModal = new bootstrap.Modal('#modal-s');
             myModal.show()
         })
 
         let wants = document.getElementById("wantBtn");
         wants.addEventListener('click', function() {
-            const myModal = new bootstrap.Modal('#modal-w');
+            myModal = new bootstrap.Modal('#modal-w');
             myModal.show()
         })
 
         let necessities = document.getElementById("necessitiesbtn");
         necessities.addEventListener('click', function() {
-            console.log("Its working")
-            const myModal = new bootstrap.Modal('#modal-n');
+            myModal = new bootstrap.Modal('#modal-n');
             myModal.show()
         })
 
         let budget = document.getElementById("budgetbtn");
         budget.addEventListener("click", function () {
-          console.log("Its working");
-          const myModal = new bootstrap.Modal("#modal-b");
+          myModal = new bootstrap.Modal("#modal-b");
           myModal.show();
         });
 
         let custom = document.getElementById("custom");
         custom.addEventListener("change", function () {
           if (custom.value == 3){
-            const myModal = new bootstrap.Modal("#modal-custom");
+            myModal.hide();
+            myModal = new bootstrap.Modal("#modal-custom");
             myModal.show();
           }
         });

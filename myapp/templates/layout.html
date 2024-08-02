@@ -18,7 +18,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/login.css">
     
-    <title>About Us</title>
+    {% if title %}
+     <title>{{title}}</title>
+    {%else%}
+      <title>Home</title>
+    {%endif%}
   </head>
   <body>
     <nav>
@@ -28,9 +32,9 @@
       <div class="navbar-text">
         <ul>
           <li><a href="{{url_for('main.badges')}}">Badges</a></li>
-          <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
           <li><a href="{{ url_for('main.aboutUs') }}">About Us</a></li>
           {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('auth.logout')}}">Logout</a></li>
           {% else %}
             <li><button class="transparent" id="loginbtn">Login</button></li>
