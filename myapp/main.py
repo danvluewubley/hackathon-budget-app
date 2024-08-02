@@ -15,11 +15,12 @@ def index():
 
 
 
-@main.route("/dashboard")
+@main.route("/dashboard", methods=["POST", "GET"])
 def dashboard():
     if request.method == "GET":
         #grab = Stats.query.filter_by(user_id=current_user.id)
         #info = taxCalculator(grab.info, False, grab.status, grab.deductions)
+        print('redirect successful')
         info = 0
         return render_template("dashboard.html", info=info)
     else:
