@@ -54,7 +54,7 @@ class taxCalculator:
         self.taxes += self.city(self.agi,status)
 
         self.fed = self.federal(self.agi, status)
-        self.cit = self.federal(self.agi, status)
+        self.cit = self.city(self.agi, status)
         self.sta = self.state(self.agi, status)
         self.leftover = (self.income - self.taxes)/12
 
@@ -107,6 +107,7 @@ class taxCalculator:
         
 
         return taxable_income 
+    
     def city(self, agi, status):
         taxable_income = 0
         #Refer to state tax comments
@@ -166,7 +167,7 @@ class budgetOptions:
         percents = {}
         percents['necessities'] = necessities * budget
         percents['savings'] = savings * budget
-        percents['wants'] = savings * wants
+        percents['wants'] = wants * budget
 
         return percents
     
