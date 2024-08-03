@@ -70,10 +70,8 @@ class taxCalculator:
             agi = agi - 13850
         elif status == 'mfj':
             agi = agi - 27700
-        elif status == "hoh":
-            agi = agi - 20800
         else:
-            agi = agi - 27700
+            agi = agi - 20800
 
         #Subtracts any additional deductions the tax filer might have from their agi 
         agi = agi - deductions
@@ -172,6 +170,6 @@ class budgetOptions:
         percents = {}
         percents['necessities'] = necessities * budget
         percents['savings'] = savings * budget
-        percents['']
+        percents['wants'] = savings * wants
 
-        return
+        return percents

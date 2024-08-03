@@ -59,13 +59,12 @@
         required
       />
       <p>Status:</p> <!--Select-->
-      <input
-        type="text"
-        name="status"
-        placeholder="Enter your filing status"
-        class="form-control"
-        required
-      />
+      <select class="form-select" name="status">
+        <option value="s">Single</option>
+        <option value="mfj">Married Filing Jointly</option>
+        <option value="hoh">Head of Household</option>
+      </select>
+        
       <button type="submit">Submit</button>
     </form>
   </body>
