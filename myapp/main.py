@@ -91,7 +91,7 @@ def dashboard():
 def budget():
     if request.method == "POST":
         req = request.get_json()
-        info = Stats.query.filter_by(user_id=current_user.id)
+        info = Stats.query.filter_by(user_id=current_user.id).first()
         leftovers = taxCalculator(info.income, info.status, info.deductions).leftover
         instance = budgetOptions(leftovers)
         if req['type'] == 3:
