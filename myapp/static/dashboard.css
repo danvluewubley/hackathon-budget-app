@@ -287,7 +287,6 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 50%;
 }
 
@@ -296,6 +295,7 @@ aside {
 }
 
 .id18 {
+  font-size: 20px;
   color: white !important;
 }
 

@@ -254,6 +254,38 @@ window.onload = function() {
           });
           myModal.hide()
         }
+        else {
+          fetch(`${window.origin}/budget`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+              type: plan.value,
+            }),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json",
+              //"X-CSRF-Token": csrf_token,
+            }),
+          }).then(function (response) {
+            if (response.status !== 200) {
+              console.log("Failure");
+              return;
+            }
+            response.json().then(function (data) {
+              let budgetPlan = data.budgetPlan;
+              let ndisplay = document.getElementById("necessities-display");
+              let sdisplay = document.getElementById("savings-display");
+              let wdisplay = document.getElementById("wants-display");
+              ndisplay.innerHTML = "Necessities: $" + parseFloat(budgetPlan["necessities"]).toFixed(2)
+              sdisplay.innerHTML = "Savings: $" + parseFloat(budgetPlan["savings"]).toFixed(2)
+              wdisplay.innerHTML = "Wants: $" + parseFloat(budgetPlan["wants"]).toFixed(2)
+            }); 
+              
+
+              
+          });
+          myModal.hide();
+        }
       })
 
         
