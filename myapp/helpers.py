@@ -125,11 +125,11 @@ class taxCalculator:
     def social_sec(self, income):
         taxable_income = 0 
         if income <= 168800:
-            taxable_income = 0.062 * income
+            taxable_income = round((0.062 * income), 2)
         else:
-            taxable_income = 0.062 * 168800
+            taxable_income = round((0.062 * 168800),2)
 
-        return  round(taxable_income, 2)
+        return  taxable_income
     
 
     def medicare(self, income, status):
@@ -143,7 +143,7 @@ class taxCalculator:
             if income < 200000:
                 taxable_income =  0.0145 * income
             else: 
-                taxable_income = (0.0145 + 0.009)* income
+                taxable_income = (0.0145 + 0.009) * income
 
         return round(taxable_income, 2)
         

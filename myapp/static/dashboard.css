@@ -207,6 +207,10 @@ aside {
   align-items: center;
 }
 
+.invisible {
+  display: none;
+}
+
 .info-container p {
   display: inline;
   font-size: 3rem;
@@ -289,4 +293,12 @@ aside {
 
 #budgetbtn {
   width: 50%;
+}
+
+.id18 {
+  color: white !important;
+}
+
+.id17 {
+  color: white;
 }

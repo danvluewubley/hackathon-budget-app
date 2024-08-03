@@ -3,7 +3,7 @@ console.log("Is this file linked");
 
 window.onload = function() {
   var myModal;
-        console.log("First check passed")
+        
         let savings = document.getElementById("savingsbtn");
         savings.addEventListener('click', function(){
             myModal = new bootstrap.Modal('#modal-s');
@@ -179,8 +179,9 @@ window.onload = function() {
     })
 
       let budgetBtn = document.getElementById('submit-b');
-      budgetBtn.addEventListener('click', function() {
-        let plan = document.getElementById('budget-options');
+      budgetBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        let plan = document.getElementById('custom');
         if (plan.value == 3) {
           let necessities = document.getElementById('necessities');
           let savings = document.getElementById('savings');
@@ -191,9 +192,9 @@ window.onload = function() {
             credentials: "include",
             body: JSON.stringify({
               type: 3,
-              wants: wants/100,
-              necessities: necessities/100,
-              savings: savings/100,
+              wants: (wants/100),
+              necessities: (necessities/100),
+              savings: (savings/100),
             }),
             cache: "no-cache",
             headers: new Headers({
@@ -204,10 +205,23 @@ window.onload = function() {
             if (response.status !== 200) {
               console.log("Failure");
               return;
+            }else {
+              console.log("success");
             }
-            response.json().then(function (data) {});
+            
+            response.json().then(function (data) {
+              let budgetPlan = data.budgetPlan;
+              let ndisplay = document.getElementById("necessities-display");
+              let sdisplay = document.getElementById("savings-display");
+              let wdisplay = document.getElementById("wants-display");
+              ndisplay.innerHTML = "Necessities: $" + budgetPlan["necessities"]
+              sdisplay.innerHTML = "Savings: $" + budgetPlan["savings"]
+              wdisplay.innerHTML = "Wants: $" + budgetPlan["wants"]
+              console.log("In custom fetch request");
+            });
+              
           });
-
+          myModal.hide()
         }
         else {
           fetch(`${window.origin}/budget`, {
@@ -226,9 +240,20 @@ window.onload = function() {
               console.log("Failure");
               return;
             }
-            response.json().then(function (data) {}); 
-              budgetPlan = data.budgetPlan
+            response.json().then(function (data) {
+              let budgetPlan = data.budgetPlan;
+              let ndisplay = document.getElementById("necessities-display");
+              let sdisplay = document.getElementById("savings-display");
+              let wdisplay = document.getElementById("wants-display");
+              ndisplay.innerHTML = "Necessities: $" + budgetPlan["necessities"]
+              sdisplay.innerHTML = "Necessities: $" + budgetPlan["savings"]
+              wdisplay.innerHTML = "Wants: $" + budgetPlan["wants"]
+            }); 
+              
+
+              
           });
+          myModal.hide();
         }
       })
 
