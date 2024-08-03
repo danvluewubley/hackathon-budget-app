@@ -81,14 +81,14 @@ class taxCalculator:
     def state(self, agi, status):
         taxable_income = 0
         #Iterates through all tax brackets until it reaches highest tax bracket for income and then ends loop.
-        # for i in range(len(ny_tax_brackets)):
+        for i in range(len(ny_tax_brackets)):
         #     #If agi is greater than the upper threshold of bracket subtract lower threshold from upper threshold and then multiply difference by bracket rate
-        #     if agi > ny_tax_brackets[i][status][1] :
-        #         taxable_income += (ny_tax_brackets[i][status][1] - ny_tax_brackets[i][status][0]) * ny_tax_brackets[i]["rate"]
-        #     #If agi is smaller subtract lower threshold from agi and then multiply the difference by the bracket rate. Then the loop breaks
-        #     elif agi <= ny_tax_brackets[i][status][1]:
-        #         taxable_income += (agi - ny_tax_brackets[i][status][0]) * ny_tax_brackets[i]["rate"]
-        #         break
+             if agi > ny_tax_brackets[i][status][1] :
+                 taxable_income += round(((ny_tax_brackets[i][status][1] - ny_tax_brackets[i][status][0]) * (ny_tax_brackets[i]["rate"] / 100)), 2)
+             #If agi is smaller subtract lower threshold from agi and then multiply the difference by the bracket rate. Then the loop breaks
+             elif agi <= ny_tax_brackets[i][status][1]:
+                 taxable_income += round(((agi - ny_tax_brackets[i][status][0]) * (ny_tax_brackets[i]["rate"] / 100)),2)
+                 break
         
 
         return taxable_income 
@@ -98,13 +98,12 @@ class taxCalculator:
         taxable_income = 0
         #Refer to state tax comments
         #Same process as state tax calculation but with federal tax bracket
-        # for i in range(len(federal_brackets)):
-            
-        #     if agi > federal_brackets[i][status][1] :
-        #         taxable_income += (federal_brackets[i][status][1] - federal_brackets[i][status][0]) * federal_brackets[i]["rate"]
-        #     elif agi <= federal_brackets[i][status][1]:
-        #         taxable_income += (agi - federal_brackets[i][status][0]) * federal_brackets[i]["rate"]
-        #         break
+        for i in range(len(federal_brackets)):
+            if agi > federal_brackets[i][status][1] :
+                taxable_income += round(((federal_brackets[i][status][1] - federal_brackets[i][status][0]) * (federal_brackets[i]["rate"] / 100)),2)
+            elif agi <= federal_brackets[i][status][1]:
+                taxable_income += round(((agi - federal_brackets[i][status][0]) * (federal_brackets[i]["rate"]  / 100)), 2)
+                break
         
 
         return taxable_income 
@@ -112,13 +111,12 @@ class taxCalculator:
         taxable_income = 0
         #Refer to state tax comments
         #Same process as state tax calculation but with federal tax bracket
-        # for i in range(len(nyc_tax_brackets)):
-        #     if agi > nyc_tax_brackets[i][status][1] :
-                
-        #         taxable_income += (nyc_tax_brackets[i][status][1] - nyc_tax_brackets[i][status][0]) * nyc_tax_brackets[i]["rate"]
-        #     elif agi <= nyc_tax_brackets[i][status][1]:
-        #         taxable_income += (agi - nyc_tax_brackets[i][status][0]) * nyc_tax_brackets[i]["rate"]
-        #         break
+        for i in range(len(nyc_tax_brackets)):
+            if agi > nyc_tax_brackets[i][status][1] :  
+                taxable_income += round(((nyc_tax_brackets[i][status][1] - nyc_tax_brackets[i][status][0]) * (nyc_tax_brackets[i]["rate"] / 100)), 2)
+            elif agi <= nyc_tax_brackets[i][status][1]:
+                taxable_income += round(((agi - nyc_tax_brackets[i][status][0]) * (nyc_tax_brackets[i]["rate"] / 100)), 2)
+                break
         
 
         return taxable_income 
@@ -131,7 +129,7 @@ class taxCalculator:
         else:
             taxable_income = 0.062 * 168800
 
-        return taxable_income
+        return  round(taxable_income, 2)
     
 
     def medicare(self, income, status):
@@ -147,7 +145,7 @@ class taxCalculator:
             else: 
                 taxable_income = (0.0145 + 0.009)* income
 
-        return taxable_income
+        return round(taxable_income, 2)
         
 
 class budgetOptions:
