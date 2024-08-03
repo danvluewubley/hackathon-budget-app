@@ -23,22 +23,21 @@
             <div class="tax">
                 <h2>Tax</h2>
                 <div class="tax-description">
-                    <p>OASDI: 
-                      {% if not info.social  %} 
+                    <p>OASDI:
                         {{info.social}} 
-                      {% endif %}</p>
-                    <p>Medicare:{% if not info.medi  %}
+                      </p>
+                    <p>Medicare:
                       {{info.medi}} 
-                     {% endif %} </p>
-                    <p>Federal Withholding:{% if not info.fed  %}  
+                      </p>
+                    <p>Federal Withholding:
                       {{info.fed}}
-                    {% endif %} </p>
-                    <p>State Tax - NY:{% if not info.sta %}
+                     </p>
+                    <p>State Tax - NY:
                       {{info.sta}}
-                    {% endif %} </p>
-                    <p>City Tax - NY:{% if not info.cit %} 
+                     </p>
+                    <p>City Tax - NY:
                       {{info.cit}} 
-                    {% endif %}</p>
+                   </p>
                 </div>
             </div>
         </div>
