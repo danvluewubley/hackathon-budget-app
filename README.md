@@ -42,7 +42,7 @@ Install the required Python packages using pip.
 pip install -r requirements.txt
 ```
 5. Set Environment Variables
- *On Windows:
+ * On Windows:
 ```
 set FLASK_APP=app
 ```
