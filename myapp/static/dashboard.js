@@ -44,14 +44,14 @@ window.onload = function() {
         submitw.addEventListener('click', function(event){
             event.preventDefault()
 
-            let type = document.getElementsByClassName("type").value;
+            let type = 'wants';
             let vars = {};
             
             
             
-            vars[0] = document.getElementById("vacation").value
-            vars[1] = document.getElementById("clothing").value
-            vars[2] = document.getElementById("other2").value
+            vars['0'] = document.getElementById("vacation").value;
+            vars['1'] = document.getElementById("clothing").value;
+            vars['2'] = document.getElementById("other2").value;
             
             fetch(`${window.origin}/dashboard`, {
                 method: "POST",
@@ -89,14 +89,14 @@ window.onload = function() {
         submits.addEventListener('click', function(event){
           event.preventDefault()
 
-          let type = document.getElementsByClassName("type").value;
+          let type = 'savings';
           let vars = {};
           
           
   
-          vars[0] = document.getElementById("emergency").value
-          vars[1] = document.getElementById("retirement").value
-          vars[2] = document.getElementById("debts").value
+          vars['0'] = document.getElementById("emergency").value;
+          vars['1'] = document.getElementById("retirement").value;
+          vars['2'] = document.getElementById("debts").value;
 
 
           fetch(`${window.origin}/dashboard`, {
@@ -135,11 +135,11 @@ window.onload = function() {
       submitn.addEventListener('click', function(event){
         event.preventDefault()
 
-        let type = document.getElementsByClassName("type").value;
+        let type = 'necessities';
         let vars = {};
-        vars[0] = document.getElementById("rent").value
-        vars[1] = document.getElementById("groceries").value
-        vars[2] = document.getElementById("other").value
+        vars['0'] = document.getElementById("rent").value;
+        vars['1'] = document.getElementById("groceries").value;
+        vars['2'] = document.getElementById("other").value;
 
         fetch(`${window.origin}/dashboard`, {
             method: "POST",
@@ -161,14 +161,15 @@ window.onload = function() {
                 return ;
             }
             response.json().then(function (data) {
+                let v = document.getElementsByClassName('')
                 let vars = data['vars']
                 let type = data['type']
                 let rent = document.getElementById("rent-display");
                 rent.innerHTML = vars[0]
                 let groceries = document.getElementById("groceries-display");
-                groceries.innerHTML = vars[1]
+                groceries.innerHTML = "Groceries: $" + vars[1]
                 let other = document.getElementById("other-display");
-                other.innerHTML = vars[2]
+                other.innerHTML = "Other: $" + vars[2]
                 
             })
         })

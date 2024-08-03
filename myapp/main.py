@@ -28,9 +28,9 @@ def dashboard():
             vars = req['vars']
             type = req['type']
             if type == "necessities":
-                rent1 = vars[0]
-                groceries1 = vars[1]
-                other1 = vars[2]
+                rent1 = vars['0']
+                groceries1 = vars['1']
+                other1 = vars['2']
                 check = Necessities.query.filter_by(user_id=current_user.id)
                 if check is None:
                     new_instance = Necessities(rent=rent1, groceries=groceries1, other=other1)
@@ -48,9 +48,9 @@ def dashboard():
                 return res
 
             elif type == "savings":
-                emergency1 = vars[0]
-                retirement1 = vars[1]
-                debt1 = vars[2]
+                emergency1 = vars['0']
+                retirement1 = vars['1']
+                debt1 = vars['2']
                 check = Savings.query.filter_by(user_id=current_user.id)
                 if check is None: 
                     new_instance = Savings(emergency=emergency1, retirement=retirement1, debt=debt1)
@@ -68,9 +68,9 @@ def dashboard():
                 return res
             else: 
                 #nothing for now 
-                vacation1 = vars[0]
-                clothing = vars[1]
-                other = vars[2]
+                vacation1 = vars['0']
+                clothing = vars['1']
+                other = vars['2']
                 check = Wants.query.filter_by(user_id=current_user.id)
                 if check is None:
                     new_instance = Wants(vacation=vacation1, clothing=clothing, other=other)
