@@ -1,4 +1,11 @@
-# Budget App
+# Budget Made Simple
+A web application to help users manage their budgeting efficiently. This app allows users to log in, track their spending, and view their budgeting dashboard.
+
+## Features
+* User authentication (sign up, log in, log out)
+* Dashboard for budgeting overview
+* Flash messages for user feedback
+* Bootstrap for responsive design
 
 ## Installation
 Follow these steps to set up and run the Flask project locally.
@@ -34,20 +41,35 @@ Install the required Python packages using pip.
 ```
 pip install -r requirements.txt
 ```
-5. Start the Flask application with:
+5. Set Environment Variables
+ * On Windows:
+```
+set FLASK_APP=app
+```
+* On macOS and Linux:
+```
+export FLASK_APP=app
+```
+6. Start the Flask application with:
 ```
 flask run
 ```
-6. Access the Application
+7. Access the Application
 Open your web browser and navigate to `http://127.0.0.1:5000`.
 
-### Additional Notes
-* **Static Files**: Ensure your static files (CSS, JS, images) are correctly referenced in your templates.
-* **Modals and Flash Messages**: Ensure Bootstrap and other dependencies are correctly included in your HTML templates.
-* **Database Configuration**: Customize the database settings in the .env file as needed for your environment.
+## Usage
+* Sign Up: Create a new account.
+* Login: Access your dashboard by logging in.
+* Dashboard: View and manage your budget.
 
-### Troubleshooting
-If you encounter any issues during installation, please check the following:
-* Ensure all dependencies are installed correctly.
-* Verify that the virtual environment is activated.
-* Check for any error messages in the terminal and address them accordingly.
+## Contributing
+Contributions are welcome! Please follow these steps to contribute:
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/your-feature-name).
+3. Make your changes.
+4. Commit your changes (git commit -m 'Add some feature').
+5. Push to the branch (git push origin feature/your-feature-name).
+6. Open a pull request.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/danvluewubley/hackathon-budget-app/blob/main/LICENSE) file for details.
