@@ -44,7 +44,7 @@ def dashboard():
                 res = make_response(jsonify({
                     "type": "necessities",
                     "vars": vars,
-                }))
+                }), 200)
                 return res
 
             elif type == "savings":
@@ -64,7 +64,7 @@ def dashboard():
                 res = make_response(jsonify({
                     "type": "savings",
                     "vars": vars,
-                }))
+                }), 200)
                 return res
             else: 
                 #nothing for now 
