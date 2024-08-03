@@ -37,32 +37,22 @@ window.onload = function() {
           }
         });
 
-        let submit = document.getElementsByClassName("submit");
+        let submitw = document.getElementById("submit-w");
+        let submitn = document.getElementById("submit-n")
+        let submits = document.getElementById("submit-s")
         
-        for (let i = 0; i < submit.length; i++)
-        submit[i].addEventListener('click', function(event){
+        submitw.addEventListener('click', function(event){
             event.preventDefault()
 
-            let type = document.getElementsByClassName("type").value
+            let type = 'wants';
             let vars = {};
             
-            if (type == "necessities") {
-                vars[0] = document.getElementById("rent").value
-                vars[1] = document.getElementById("groceries").value
-                vars[2] = document.getElementById("other").value
-            }
-            else if (type == "savings") {
-                vars[0] = document.getElementById("emergency").value
-                vars[1] = document.getElementById("retirement").value
-                vars[2] = document.getElementById("debts").value
-
-            }
-            else { 
-                vars[0] = document.getElementById("vacation").value
-                vars[1] = document.getElementById("clothing").value
-                vars[2] = document.getElementById("other2").value
-            }
-
+            
+            
+            vars['0'] = document.getElementById("vacation").value;
+            vars['1'] = document.getElementById("clothing").value;
+            vars['2'] = document.getElementById("other2").value;
+            
             fetch(`${window.origin}/dashboard`, {
                 method: "POST",
                 credentials: "include",
@@ -85,54 +75,108 @@ window.onload = function() {
                 response.json().then(function (data) {
                     let vars = data['vars']
                     let type = data['type']
-                    if (type == "necessities"){
-                        let rent = document.getElementById("rent-display");
-                        rent.innerHTML = vars[0]
-                        let groceries = document.getElementById("groceries-display");
-                        groceries.innerHTML = vars[1]
-                        let other = document.getElementById("other-display");
-                        other.innerHTML = vars[2]
-                    }
-                    else if (type == "savings") {
-                        let emergency = document.getElementById("emergency-display");
-                        emergency.innerHTML = vars[0]
-                        let retirement = document.getElementById("retirement-display");
-                        retirement.innerHTML = vars[1]
-                        let debt = document.getElementById("debt-display");
-                        debt.innerHTML = vars[2]
-                    }
-                    else {
-                        let vacation = document.getElementById("vacation-display");
-                        vacation.innerHTML = vars[0]
-                        let clothing = document.getElementById("clothing-display");
-                        retirement.innerHTML = vars[1]
-                        let other = document.getElementById("other2-display");
-                        other.innerHTML = vars[2]
-                    }
+                    
+                    let vacation = document.getElementById("vacation-display");
+                    vacation.innerHTML = "Vacation: $" + vars[0]
+                    let clothing = document.getElementById("clothing-display");
+                    clothing.innerHTML = "Clothing: $" + vars[1];
+                    let other = document.getElementById("other2-display");
+                    other.innerHTML = "Other: $" + vars[2]
+                    
                 })
             })
+            myModal.hide()
+        })
+        submits.addEventListener('click', function(event){
+          event.preventDefault()
 
-            fetch(`${window.origin}/dashboard`, {
+          let type = 'savings';
+          let vars = {};
+          
+          
+  
+          vars['0'] = document.getElementById("emergency").value;
+          vars['1'] = document.getElementById("retirement").value;
+          vars['2'] = document.getElementById("debts").value;
+
+
+          fetch(`${window.origin}/dashboard`, {
               method: "POST",
               credentials: "include",
               body: JSON.stringify({
-                vars: vars,
-                type: type,
-                location: "specifics",
+                  vars: vars,
+                  type: type,
+                  location: "specifics"
               }),
               cache: "no-cache",
               headers: new Headers({
+                  "content-type": "application/json",
+                  //"X-CSRF-Token": csrf_token,
+              })
+          })
+          .then(function(response) {
+              if (response.status !== 200){
+                  console.log("Failure")
+                  return ;
+              }
+              response.json().then(function (data) {
+                  let vars = data['vars']
+                  let type = data['type']
+              
+                  
+                  let emergency = document.getElementById("emergency-display");
+                  emergency.innerHTML = "Emergency Funds: $" + vars[0]
+                  let retirement = document.getElementById("retirement-display");
+                  retirement.innerHTML = "Retirement: $" + vars[1]
+                  let debt = document.getElementById("debt-display");
+                  debt.innerHTML = "Debts: $" + vars[2]
+              })
+          })
+        myModal.hide();
+      })
+      submitn.addEventListener('click', function(event){
+        event.preventDefault()
+
+        let type = 'necessities';
+        let vars = {};
+        vars['0'] = document.getElementById("rent").value;
+        vars['1'] = document.getElementById("groceries").value;
+        vars['2'] = document.getElementById("other").value;
+
+        fetch(`${window.origin}/dashboard`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+                vars: vars,
+                type: type,
+                location: "specifics"
+            }),
+            cache: "no-cache",
+            headers: new Headers({
                 "content-type": "application/json",
                 //"X-CSRF-Token": csrf_token,
-              }),
-            }).then(function (response) {
-              if (response.status !== 200) {
-                console.log("Failure");
-                return;
-              }
-              response.json().then(function (data) {});
-            });
+            })
         })
+        .then(function(response) {
+            if (response.status !== 200){
+                console.log("Failure")
+                return ;
+            }
+            response.json().then(function (data) {
+                let v = document.getElementsByClassName('')
+                let vars = data['vars']
+                let type = data['type']
+                let rent = document.getElementById("rent-display");
+                rent.innerHTML = "Rent: $" + vars[0]
+                let groceries = document.getElementById("groceries-display");
+                groceries.innerHTML = "Groceries: $" + vars[1]
+                let other = document.getElementById("other-display");
+                other.innerHTML = "Other: $" + vars[2]
+                
+            })
+        })
+      myModal.hide();
+    })
 
       let budgetBtn = document.getElementById('submit-b');
       budgetBtn.addEventListener('click', function() {
@@ -146,10 +190,10 @@ window.onload = function() {
             method: "POST",
             credentials: "include",
             body: JSON.stringify({
-              'type': 3,
-              'wants': wants/100,
-              'necessities': necessities/100,
-              'savings': savings/100,
+              type: 3,
+              wants: wants/100,
+              necessities: necessities/100,
+              savings: savings/100,
             }),
             cache: "no-cache",
             headers: new Headers({
@@ -170,7 +214,7 @@ window.onload = function() {
             method: "POST",
             credentials: "include",
             body: JSON.stringify({
-              'type': plan.value,
+              type: plan.value,
             }),
             cache: "no-cache",
             headers: new Headers({
