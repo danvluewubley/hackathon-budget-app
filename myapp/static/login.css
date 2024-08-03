@@ -47,3 +47,17 @@
   font-size: 20px;
   margin-right: 10px;
 }
+
+#flash-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: auto;
+  max-width: 300px;
+}
+
+.alert {
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,84 +1,35 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
 from .models import User, Stats
 from . import db
 
 auth = Blueprint('auth', __name__)
-
-
-@auth.route('/login', methods=['GET','POST'])
-def login_post():
-    if request.method == "POST":
-        email = request.form.get('email')
-        password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
-
-        user = User.query.filter_by(email=email).first()
-
-        # check if user actually exists
-        # take the user supplied password, hash it, and compare it to the hashed password in database
-        if not user or not check_password_hash(user.password, password): 
-            flash('Please check your login details and try again.')
-            return redirect(url_for('auth.login')) # if user doesn't exist or password is wrong, reload the page
-
-        # if the above check passes, then we know the user has the right credentials
-        login_user(user, remember=remember)
-        return redirect("/dashboard")
-    else: 
-        return render_template("login.html")
-    
-
-# @auth.route("/sign-up", methods=["GET", "POST"])
-# def signUp():
-#     if request.method == "GET":
-#         return render_template("signup.html")
-#     if request.method == "POST":
-#         email1 = request.form.get("email")
-#         password = request.form.get("password")
-#         confirmation = request.form.get("confirmation")
-#         location1 = request.form.get("ny-or-nyc")
-#         deduction1 = request.form.get("deduction")
-#         status1 = request.form.get("status")
-#         if password != confirmation:
-#             return ValueError
-#         hash = generate_password_hash(password)
         
-#         new_account = User(email=email1, password=hash)
+@auth.route('/login', methods=["POST"])
+def login_post():    
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    remember = True if data.get('remember') else False
 
-#         db.session.add(new_account)
+    user = User.query.filter_by(email=email).first()
 
-#         db.session.commit()
+    if not user or not check_password_hash(user.password, password): 
+        flash('Please check your login details and try again.', 'danger')
+        return jsonify({"success": False}), 401
 
-#         current = User.query.filter_by(email=email1)
-#         print(111111111)
-#         print(current.id)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-#         print(111111111)
-
-#         income1 = request.form.get("income")
-
-#         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
-
-#         db.session.add(new_info)
-
-#         db.session.commit()
-
-
-#         return redirect(url_for("main.dashboard"))
+    # Successful login
+    login_user(user, remember=remember)
+    flash("Login successful!", 'success')
+    return jsonify({"success": True}), 200  
     
+
+
 @auth.route("/sign-up", methods=["GET", "POST"])
 def signUp():
     if request.method == "GET":
-        return render_template("signup.html")
+        return render_template("signup.html", title="Sign Up")
     
     if request.method == "POST":
         email1 = request.form.get("email")
@@ -117,6 +68,8 @@ def signUp():
         except Exception as e:
             db.session.rollback()
             return f"An error occurred while creating user stats: {e}", 500
+        
+        login_user(current)
 
         return redirect(url_for("main.dashboard"))
 
@@ -124,4 +77,4 @@ def signUp():
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect("/index")
+    return redirect("/")

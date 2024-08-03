@@ -8,29 +8,47 @@
     <link rel="stylesheet" href="../static/badges.css" />
     <section>
         <div class="card-grid">
-            <div class="card-item">
-                <div class="card-border" id="iron">
-                    <img src="../static/badges/iron.png" alt="Sorry low on budget!">
-                    <h2>Iron</h2>
-                    <p>Create an account</p>
+            {% if current_user.is_authenticated %}
+                <div class="card-item">
+                    <div class="card-border" id="iron-none">
+                        <img src="../static/badges/iron.png" alt="Sorry low on budget!">
+                        <h2>Iron</h2>
+                        <p>Create an account</p>
+                    </div>
                 </div>
-            </div>
+                <div class="card-item">
+                    <div class="card-border" id="gold-none">
+                        <img src="../static/badges/gold.png" alt="Sorry low on budget!">
+                        <h2>Gold</h2>
+                        <p>Add income, budget, deductions</p>
+                    </div>    
+                </div>
+            {% else %}
+                <div class="card-item">
+                    <div class="card-border" id="iron-grey">
+                        <img src="../static/badges/iron.png" alt="Sorry low on budget!">
+                        <h2>Iron</h2>
+                        <p>Create an account</p>
+                    </div>
+                </div>
+                <div class="card-item">
+                    <div class="card-border" id="gold-grey">
+                        <img src="../static/badges/gold.png" alt="Sorry low on budget!">
+                        <h2>Gold</h2>
+                        <p>Add income, budget, deductions</p>
+                    </div>    
+                </div>
+            {% endif %}
+            
             <div class="card-item">
-                <div class="card-border" id="gold">
-                    <img src="../static/badges/gold.png" alt="Sorry low on budget!">
-                    <h2>Gold</h2>
-                    <p>Add income, budget, deductions</p>
-                </div>    
-            </div>
-            <div class="card-item">
-                <div class="card-border" id="emerald">
+                <div class="card-border" id="emerald-grey">
                     <img src="../static/badges/emerald.png" alt="Sorry low on budget!">
                     <h2>Emerald</h2>
                     <p>Pick a budgeting plan</p>
                 </div>      
             </div>
             <div class="card-item">
-                <div class="card-border" id="diamond">
+                <div class="card-border" id="diamond-grey">
                     <img src="../static/badges/diamond.png" alt="Sorry low on budget!">
                     <h2>Diamond</h2>
                     <p>Add items to specific budgeting categories</p>

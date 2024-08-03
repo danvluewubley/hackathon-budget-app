@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, jsonify, make_response
+from flask import Blueprint, render_template, request, redirect, jsonify, make_response, url_for
 from flask_login import login_required, current_user
 
 main = Blueprint('main', __name__)
@@ -13,15 +13,15 @@ def index():
     if request.method == "GET":
         return render_template("index.html")
 
-
-
-@main.route("/dashboard")
+@login_required
+@main.route("/dashboard", methods=["POST", "GET"])
 def dashboard():
     if request.method == "GET":
         #grab = Stats.query.filter_by(user_id=current_user.id)
         #info = taxCalculator(grab.info, False, grab.status, grab.deductions)
         info = 0
-        return render_template("dashboard.html", info=info)
+        print('redirect successful')
+        return render_template("dashboard.html", info=info, title="Dashboard")
     else:
         req = request.get_json()
         if req["location"] == "specifics":
@@ -98,8 +98,8 @@ def budget():
 @main.route("/aboutUs")
 def aboutUs():
     if request.method == "GET":
-        return render_template("aboutus.html")
+        return render_template("aboutus.html", title="About Us")
     
 @main.route("/badges")
 def badges():
-    return render_template("badges.html")
+    return render_template("badges.html", title="Badges")
