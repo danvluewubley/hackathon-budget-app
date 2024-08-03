@@ -91,10 +91,35 @@ def dashboard():
 
 @main.route("/budget", methods=["POST"])
 def budget():
-    # budget logic goes here
+    if request.method == "POST":
+        req = request.get_json()
+        info = Stats.query.filter_by(user_id=current_user.id)
+        leftovers = taxCalculator(info.income, info.status, info.deductions).leftover
+        instance = budgetOptions(leftovers)
+        if req['type'] == 3:
+            budgetPlan = instance.custom(req['savings'],req['necessities'], req["wants"], leftovers)
 
-    return 
+            res = make_response(jsonify({
+                "budgetPlan": budgetPlan,
+                }), 200)
+            return res
+        
+        elif req['type'] == 2:
+            budgetPlan = instance.seventyTwentyTen(leftovers)
 
+            res = make_response(jsonify({
+                "budgetPlan": budgetPlan,
+            }), 200)
+            return res
+        else:
+            budgetPlan = instance.fiftyTwentyThirty(leftovers)
+
+            res = make_response(jsonify({
+                "budgetPlan": budgetPlan,
+            }), 200)
+            return res
+
+        
 @main.route("/aboutUs")
 def aboutUs():
     if request.method == "GET":

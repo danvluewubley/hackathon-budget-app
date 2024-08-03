@@ -36,15 +36,13 @@ nyc_tax_brackets = [
 
 class taxCalculator:
     
-    def __init__(self, income, agiVal, status, deductions):
+    def __init__(self, income, status, deductions):
         self.status = status
         self.income = income
         self.taxes = 0
         #Checks if the value given is already adjusted gross income or not
-        if agiVal == True:
-            self.agi = self.income
-        else:
-            self.agi = self.fagi(income, status, deductions)
+        
+        self.agi = self.fagi(income, status, deductions)
         self.social = self.social_sec(income)
         self.medi = self.medicare(income, status)
 
@@ -70,10 +68,8 @@ class taxCalculator:
             agi = agi - 13850
         elif status == 'mfj':
             agi = agi - 27700
-        elif status == "hoh":
-            agi = agi - 20800
         else:
-            agi = agi - 27700
+            agi = agi - 20800
 
         #Subtracts any additional deductions the tax filer might have from their agi 
         agi = agi - deductions
@@ -161,15 +157,25 @@ class budgetOptions:
 
 
     def fiftyTwentyThirty(self, budget):
-        dict = {}
-        dict["needs"] = budget * 0.50
-        dict["needs"] = budget * 0.30 
-        dict["needs"] = budget * 0.20
-        return dict
+        percent = {}
+        percent["necessities"] = budget * 0.50
+        percent["savings"] = budget * 0.30 
+        percent["wants"] = budget * 0.20
+        return percent
     
 
-    def custom(self, rent, necessities, wants, budget):
+    def custom(self, savings, necessities, wants, budget):
         percents = {}
-        percents['self'] = 0
+        percents['necessities'] = necessities * budget
+        percents['savings'] = savings * budget
+        percents['wants'] = savings * wants
 
-        return
+        return percents
+    
+    def seventyTwentyTen(self, budget):
+        percent = {}
+        percent["necessities"] = budget * 0.20
+        percent["savings"] = budget * 0.70
+        percent["wants"] = budget * 0.10
+
+        return percent
