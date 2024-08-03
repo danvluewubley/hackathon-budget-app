@@ -182,11 +182,42 @@ window.onload = function() {
       budgetBtn.addEventListener('click', function(event) {
         event.preventDefault();
         let plan = document.getElementById('custom');
-        if (plan.value == 3) {
+        if (plan.value !== "3") {
+          fetch(`${window.origin}/budget`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+              type: plan.value,
+            }),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json",
+              //"X-CSRF-Token": csrf_token,
+            }),
+          }).then(function (response) {
+            if (response.status !== 200) {
+              console.log("Failure");
+              return;
+            }
+            response.json().then(function (data) {
+              let budgetPlan = data.budgetPlan;
+              let ndisplay = document.getElementById("necessities-display");
+              let sdisplay = document.getElementById("savings-display");
+              let wdisplay = document.getElementById("wants-display");
+              ndisplay.innerHTML = "Necessities: $" + budgetPlan["necessities"]
+              sdisplay.innerHTML = "Necessities: $" + budgetPlan["savings"]
+              wdisplay.innerHTML = "Wants: $" + budgetPlan["wants"]
+            }); 
+              
+
+              
+          });
+          myModal.hide();
+        } else {
           let necessities = document.getElementById('necessities');
           let savings = document.getElementById('savings');
           let wants = document.getElementById('wants');
-          
+          console.log("made it past first if statement");
           fetch(`${window.origin}/budget`, {
             method: "POST",
             credentials: "include",
@@ -222,38 +253,6 @@ window.onload = function() {
               
           });
           myModal.hide()
-        }
-        else {
-          fetch(`${window.origin}/budget`, {
-            method: "POST",
-            credentials: "include",
-            body: JSON.stringify({
-              type: plan.value,
-            }),
-            cache: "no-cache",
-            headers: new Headers({
-              "content-type": "application/json",
-              //"X-CSRF-Token": csrf_token,
-            }),
-          }).then(function (response) {
-            if (response.status !== 200) {
-              console.log("Failure");
-              return;
-            }
-            response.json().then(function (data) {
-              let budgetPlan = data.budgetPlan;
-              let ndisplay = document.getElementById("necessities-display");
-              let sdisplay = document.getElementById("savings-display");
-              let wdisplay = document.getElementById("wants-display");
-              ndisplay.innerHTML = "Necessities: $" + budgetPlan["necessities"]
-              sdisplay.innerHTML = "Necessities: $" + budgetPlan["savings"]
-              wdisplay.innerHTML = "Wants: $" + budgetPlan["wants"]
-            }); 
-              
-
-              
-          });
-          myModal.hide();
         }
       })
 
