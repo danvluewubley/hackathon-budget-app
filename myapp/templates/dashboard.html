@@ -10,8 +10,15 @@
     <section>
         <div class="left-side">
             <div class="budget-plan">
-                <h2>Budget Plan</h2>
-                <button class="transparent" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
+                <h2>Budget Plan (Monthly)</h2>
+                <div class="row">
+                  <button class="transparent" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
+                  <div class="info-container">
+                      <p id="necessities-display">Necessities: $100</p>
+                      <p id="savings-display">Savings: $100</p>
+                      <p id="wants-display">Wants: $100</p>
+                  </div>
+                </div>     
             </div>
             <div class="tax">
                 <h2>Tax</h2>
@@ -95,15 +102,18 @@
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-        <p>Pick a Plan</p>
-        <select name="budget-options" required id="custom">
-          <option value="1">Necessities (20%) Savings (50%) Wants (30%)</option>
-          <option value="2">Necessities (70%) Savings (20%) Wants (10%)</option>
-          <option value="3">Custom</option>
+        <form action="">
+          <p>Pick a Plan</p>
+          <select name="budget-options" required id="custom">
+            <option value="1">Necessities (20%) Savings (50%) Wants (30%)</option>
+            <option value="2">Necessities (20%) Savings (70%) Wants (10%)</option>
+            <option value="3">Custom</option>
         </select>
         <br>
 			  <p id="message"></p>
-        <button type="submit" class="btn btn-primary submit">Save</button>
+        <button type="submit-b" class="btn btn-primary submit">Save</button>
+        </form>
+        
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -129,7 +139,7 @@
         <input type="text" placeholder="wants" id="wants">
         <br>
 			  <p id="message"></p>
-        <button type="submit" class="btn btn-primary submit">Save</button>
+        <button type="submit-c" class="btn btn-primary submit">Save</button>
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -154,7 +164,7 @@
         <p>How much money do you want to put into other necessities?</p>
         <input type="text" placeholder="Input your other necessities amount" id="other">
         <br>
-        <button type="submit" class="btn btn-primary submit">Save</button>
+        <button type="submit-n" class="btn btn-primary submit">Save</button>
 			  <p id="message"></p>
 			</div>
 			<div class="modal-footer" id="modal-footer">
@@ -208,7 +218,7 @@
         <input type="text" placeholder="Input your other wants amount" id="other2">
         <br>
 			  <p id="message"></p>
-        <button type="submit" class="btn btn-primary submit">Save</button>
+        <button type="submit-w" class="btn btn-primary submit">Save</button>
 			</div>
 			<div class="modal-footer" id="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
