@@ -62,6 +62,8 @@ def signUp():
 
         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
         new_badge = Badges(user_id=current_user.id, badge=False)
+        db.session.add(new_badge)
+        db.session.commit()
         try:
             db.session.add(new_info)
             db.session.commit()

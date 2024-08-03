@@ -93,7 +93,7 @@ def budget():
         req = request.get_json()
         badge_select = Badges.query.filter_by(user_id=current_user.id).first()
         badge_select.badge = True
-        db.session.commit()
+        db.session.commit
         info = Stats.query.filter_by(user_id=current_user.id).first()
         leftovers = taxCalculator(info.income, info.status, info.deductions).leftover
         instance = budgetOptions(leftovers)
