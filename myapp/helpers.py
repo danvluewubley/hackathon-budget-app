@@ -36,15 +36,13 @@ nyc_tax_brackets = [
 
 class taxCalculator:
     
-    def __init__(self, income, agiVal, status, deductions):
+    def __init__(self, income, status, deductions):
         self.status = status
         self.income = income
         self.taxes = 0
         #Checks if the value given is already adjusted gross income or not
-        if agiVal == True:
-            self.agi = self.income
-        else:
-            self.agi = self.fagi(income, status, deductions)
+        
+        self.agi = self.fagi(income, status, deductions)
         self.social = self.social_sec(income)
         self.medi = self.medicare(income, status)
 
@@ -159,11 +157,11 @@ class budgetOptions:
 
 
     def fiftyTwentyThirty(self, budget):
-        dict = {}
-        dict["needs"] = budget * 0.50
-        dict["needs"] = budget * 0.30 
-        dict["needs"] = budget * 0.20
-        return dict
+        percent = {}
+        percent["necessities"] = budget * 0.50
+        percent["savings"] = budget * 0.30 
+        percent["wants"] = budget * 0.20
+        return percent
     
 
     def custom(self, savings, necessities, wants, budget):
@@ -173,3 +171,11 @@ class budgetOptions:
         percents['wants'] = savings * wants
 
         return percents
+    
+    def seventyTwentyTen(self, budget):
+        percent = {}
+        percent["necessities"] = budget * 0.20
+        percent["savings"] = budget * 0.70
+        percent["wants"] = budget * 0.10
+
+        return percent

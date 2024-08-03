@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__)
         
 @auth.route('/login', methods=["POST"])
 def login_post():    
-    data = request.json
+    data = request.get_json()
     email = data.get('email')
     password = data.get('password')
     remember = True if data.get('remember') else False

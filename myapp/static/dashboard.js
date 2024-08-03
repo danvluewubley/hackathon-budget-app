@@ -112,7 +112,7 @@ window.onload = function() {
                 })
             })
 
-            fetch(`${window.origin}/budget`, {
+            fetch(`${window.origin}/dashboard`, {
               method: "POST",
               credentials: "include",
               body: JSON.stringify({
@@ -133,6 +133,60 @@ window.onload = function() {
               response.json().then(function (data) {});
             });
         })
+
+      let budgetBtn = document.getElementById('submit-b');
+      budgetBtn.addEventListener('click', function() {
+        let plan = document.getElementById('budget-options');
+        if (plan.value == 3) {
+          let necessities = document.getElementById('necessities');
+          let savings = document.getElementById('savings');
+          let wants = document.getElementById('wants');
+          
+          fetch(`${window.origin}/budget`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+              'type': 3,
+              'wants': wants/100,
+              'necessities': necessities/100,
+              'savings': savings/100,
+            }),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json",
+              //"X-CSRF-Token": csrf_token,
+            }),
+          }).then(function (response) {
+            if (response.status !== 200) {
+              console.log("Failure");
+              return;
+            }
+            response.json().then(function (data) {});
+          });
+
+        }
+        else {
+          fetch(`${window.origin}/budget`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+              'type': plan.value,
+            }),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json",
+              //"X-CSRF-Token": csrf_token,
+            }),
+          }).then(function (response) {
+            if (response.status !== 200) {
+              console.log("Failure");
+              return;
+            }
+            response.json().then(function (data) {}); 
+              budgetPlan = data.budgetPlan
+          });
+        }
+      })
 
         
 
