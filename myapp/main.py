@@ -17,10 +17,8 @@ def index():
 @main.route("/dashboard", methods=["POST", "GET"])
 def dashboard():
     if request.method == "GET":
-        #grab = Stats.query.filter_by(user_id=current_user.id)
-        #info = taxCalculator(grab.info, False, grab.status, grab.deductions)
-        info = 0
-        print('redirect successful')
+        grab = Stats.query.filter_by(user_id=current_user.id).first()
+        info = taxCalculator(grab.income, grab.status, grab.deductions)
         return render_template("dashboard.html", info=info, title="Dashboard")
     else:
         req = request.get_json()

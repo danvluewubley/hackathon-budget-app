@@ -276,3 +276,17 @@ aside {
   display: flex;
   flex-direction: row;
 }
+
+.budget-container{
+  color: white;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+#budgetbtn {
+  width: 50%;
+}

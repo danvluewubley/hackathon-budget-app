@@ -77,14 +77,15 @@ window.onload = function() {
                     let type = data['type']
                     
                     let vacation = document.getElementById("vacation-display");
-                    vacation.innerHTML = vars[0]
+                    vacation.innerHTML = "Vacation: $" + vars[0]
                     let clothing = document.getElementById("clothing-display");
-                    retirement.innerHTML = vars[1]
+                    clothing.innerHTML = "Clothing: $" + vars[1];
                     let other = document.getElementById("other2-display");
-                    other.innerHTML = vars[2]
+                    other.innerHTML = "Other: $" + vars[2]
                     
                 })
             })
+            myModal.hide()
         })
         submits.addEventListener('click', function(event){
           event.preventDefault()
@@ -124,13 +125,14 @@ window.onload = function() {
               
                   
                   let emergency = document.getElementById("emergency-display");
-                  emergency.innerHTML = vars[0]
+                  emergency.innerHTML = "Emergency Funds: $" + vars[0]
                   let retirement = document.getElementById("retirement-display");
-                  retirement.innerHTML = vars[1]
+                  retirement.innerHTML = "Retirement: $" + vars[1]
                   let debt = document.getElementById("debt-display");
-                  debt.innerHTML = vars[2]
+                  debt.innerHTML = "Debts: $" + vars[2]
               })
           })
+        myModal.hide();
       })
       submitn.addEventListener('click', function(event){
         event.preventDefault()
@@ -165,7 +167,7 @@ window.onload = function() {
                 let vars = data['vars']
                 let type = data['type']
                 let rent = document.getElementById("rent-display");
-                rent.innerHTML = vars[0]
+                rent.innerHTML = "Rent: $" + vars[0]
                 let groceries = document.getElementById("groceries-display");
                 groceries.innerHTML = "Groceries: $" + vars[1]
                 let other = document.getElementById("other-display");
@@ -173,6 +175,7 @@ window.onload = function() {
                 
             })
         })
+      myModal.hide();
     })
 
       let budgetBtn = document.getElementById('submit-b');

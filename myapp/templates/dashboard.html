@@ -13,7 +13,7 @@
                 <h2>Budget Plan (Monthly)</h2>
                 <div class="row">
                   <button class="transparent" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
-                  <div class="info-container">
+                  <div class="budget-container">
                       <p id="necessities-display">Necessities: $100</p>
                       <p id="savings-display">Savings: $100</p>
                       <p id="wants-display">Wants: $100</p>
@@ -23,20 +23,15 @@
             <div class="tax">
                 <h2>Tax</h2>
                 <div class="tax-description">
-                    <p>OASDI:
-                        {{info.social}} 
+                    <p>OASDI: ${{info.social}} 
                       </p>
-                    <p>Medicare:
-                      {{info.medi}} 
+                    <p>Medicare: ${{info.medi}} 
                       </p>
-                    <p>Federal Withholding:
-                      {{info.fed}}
+                    <p>Federal Withholding: ${{info.fed}}
                      </p>
-                    <p>State Tax - NY:
-                      {{info.sta}}
+                    <p>State Tax - NY: ${{info.sta}}
                      </p>
-                    <p>City Tax - NY:
-                      {{info.cit}} 
+                    <p>City Tax - NY: ${{info.cit}} 
                    </p>
                 </div>
             </div>
@@ -68,7 +63,7 @@
                 <button class="transparent" id="savingsbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
                 <div class="info-container">
                     
-                    <p id="emergency-display">Emergency Fund $100</p>
+                    <p id="emergency-display">Emergency Fund: ${{current_user.emergency}}</p>
                     <p id="retirement-display">Retirement $100</p>
                     <p id="debt-display">Debts $100</p>
                 </div>
