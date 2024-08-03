@@ -48,9 +48,3 @@ class Wants(db.Model):
     vacation = db.Column(db.Integer)
     clothing = db.Column(db.Integer)
     other = db.Column(db.Integer)
-
-class Badges(db.Model):
-    __tablename__ = 'badges'
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    badge=db.Column(db.Boolean)
-    badge_id = db.Column(db.Integer, primary_key=True)
