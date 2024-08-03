@@ -245,9 +245,9 @@ window.onload = function() {
               let ndisplay = document.getElementById("necessities-display");
               let sdisplay = document.getElementById("savings-display");
               let wdisplay = document.getElementById("wants-display");
-              ndisplay.innerHTML = "Necessities: $" + budgetPlan["necessities"]
-              sdisplay.innerHTML = "Necessities: $" + budgetPlan["savings"]
-              wdisplay.innerHTML = "Wants: $" + budgetPlan["wants"]
+              ndisplay.innerHTML = "Necessities: $" + parseFloat(budgetPlan["necessities"]).toFixed(2)
+              sdisplay.innerHTML = "Savings: $" + parseFloat(budgetPlan["savings"]).toFixed(2)
+              wdisplay.innerHTML = "Wants: $" + parseFloat(budgetPlan["wants"]).toFixed(2)
             }); 
               
 
