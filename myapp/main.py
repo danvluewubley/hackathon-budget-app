@@ -5,7 +5,7 @@ main = Blueprint('main', __name__)
 
 from .helpers import taxCalculator, budgetOptions, ny_tax_brackets, nyc_tax_brackets, federal_brackets
 from werkzeug.security import check_password_hash, generate_password_hash
-from .models import db, User, Stats, Necessities, Savings, Wants
+from .models import db, User, Stats, Necessities, Savings, Wants, Badges
 
         
 @main.route("/")
@@ -91,6 +91,9 @@ def dashboard():
 def budget():
     if request.method == "POST":
         req = request.get_json()
+        badge_select = Badges.query.filter_by(user_id=current_user.id).first()
+        badge_select.badge = True
+        db.session.commit()
         info = Stats.query.filter_by(user_id=current_user.id).first()
         leftovers = taxCalculator(info.income, info.status, info.deductions).leftover
         instance = budgetOptions(leftovers)

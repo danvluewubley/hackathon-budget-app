@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
-from .models import User, Stats
+from .models import User, Stats, Badges
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -61,7 +61,7 @@ def signUp():
         income1 = request.form.get("income")
 
         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
-
+        new_badge = Badges(user_id=current_user.id, badge=False)
         try:
             db.session.add(new_info)
             db.session.commit()

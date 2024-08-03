@@ -1,4 +1,3 @@
-console.log("Is this file linked");
 
 
 window.onload = function() {
@@ -30,7 +29,7 @@ window.onload = function() {
 
         let custom = document.getElementById("custom");
         custom.addEventListener("change", function () {
-          if (custom.value == 3){
+          if (custom.value == "third"){
             myModal.hide();
             myModal = new bootstrap.Modal("#modal-custom");
             myModal.show();
@@ -182,7 +181,7 @@ window.onload = function() {
       budgetBtn.addEventListener('click', function(event) {
         event.preventDefault();
         let plan = document.getElementById('custom');
-        if (plan.value !== "3") {
+        if (plan.value != "third") {
           fetch(`${window.origin}/budget`, {
             method: "POST",
             credentials: "include",
@@ -254,38 +253,7 @@ window.onload = function() {
           });
           myModal.hide()
         }
-        else {
-          fetch(`${window.origin}/budget`, {
-            method: "POST",
-            credentials: "include",
-            body: JSON.stringify({
-              type: plan.value,
-            }),
-            cache: "no-cache",
-            headers: new Headers({
-              "content-type": "application/json",
-              //"X-CSRF-Token": csrf_token,
-            }),
-          }).then(function (response) {
-            if (response.status !== 200) {
-              console.log("Failure");
-              return;
-            }
-            response.json().then(function (data) {
-              let budgetPlan = data.budgetPlan;
-              let ndisplay = document.getElementById("necessities-display");
-              let sdisplay = document.getElementById("savings-display");
-              let wdisplay = document.getElementById("wants-display");
-              ndisplay.innerHTML = "Necessities: $" + parseFloat(budgetPlan["necessities"]).toFixed(2)
-              sdisplay.innerHTML = "Savings: $" + parseFloat(budgetPlan["savings"]).toFixed(2)
-              wdisplay.innerHTML = "Wants: $" + parseFloat(budgetPlan["wants"]).toFixed(2)
-            }); 
-              
-
-              
-          });
-          myModal.hide();
-        }
+        
       })
 
         

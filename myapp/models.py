@@ -53,3 +53,4 @@ class Badges(db.Model):
     __tablename__ = 'badges'
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     badge=db.Column(db.Boolean)
+    badge_id = db.Column(db.Integer, primary_key=True)
