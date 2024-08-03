@@ -10,15 +10,18 @@
     <section>
         <div class="left-side">
             <div class="budget-plan">
+
+              
                 <h2>Budget Plan (Monthly)</h2>
                 <div class="row">
-                  <button class="transparent" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
-                  <div class="budget-container">
-                      <p id="necessities-display">Necessities: $100</p>
-                      <p id="savings-display">Savings: $100</p>
-                      <p id="wants-display">Wants: $100</p>
-                  </div>
-                </div>     
+                    <button class="transparent id17" id="budgetbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
+                    <div id="budgetInfo-container" class="budget-container">
+                        <p class="id18" id="necessities-display">Necessities: </p>
+                        <p class="id18" id="savings-display">Savings: </p>
+                        <p class="id18" id="wants-display">Wants: </p>
+                    </div>
+                </div>  
+                 
             </div>
             <div class="tax">
                 <h2>Tax</h2>
@@ -48,9 +51,9 @@
                 <button class="transparent" id="necessitiesbtn"> <img src="../static/add.png" alt="Sorry low on budget!"></button>
                 <div class="info-container">
                    
-                    <p id="rent-display">Rent $100</p>
-                    <p id="groceries-display">Groceries $100</p>
-                    <p id="other-display">Other $100</p>
+                    <p id="rent-display">Rent $0</p>
+                    <p id="groceries-display">Groceries $0</p>
+                    <p id="other-display">Other $0</p>
                 </div>
             </div>
             <div class="savings">
@@ -63,9 +66,9 @@
                 <button class="transparent" id="savingsbtn"><img src="../static/add.png" alt="Sorry low on budget!"></button>
                 <div class="info-container">
                     
-                    <p id="emergency-display">Emergency Fund: ${{current_user.emergency}}</p>
-                    <p id="retirement-display">Retirement $100</p>
-                    <p id="debt-display">Debts $100</p>
+                    <p id="emergency-display">Emergency Fund: $0</p>
+                    <p id="retirement-display">Retirement $0</p>
+                    <p id="debt-display">Debts $0</p>
                 </div>
             </div>
             <div class="wants">
@@ -77,9 +80,9 @@
                 </div>
                 <button class="transparent" id="wantBtn"><img src="../static/add.png" alt="Sorry low on budget!"> </button>
                 <div class="info-container">
-                    <p id="vacation-display">Vacation $100</p>
-                    <p id="clothing-display">Clothing $100</p>
-                    <p id="other2-display">Other $100</p>
+                    <p id="vacation-display">Vacation $0</p>
+                    <p id="clothing-display">Clothing $0</p>
+                    <p id="other2-display">Other $0</p>
                 </div>
 
             </div>
@@ -99,9 +102,9 @@
         <form action="">
           <p>Pick a Plan</p>
           <select name="budget-options" required id="custom">
-            <option value="1">Necessities (20%) Savings (50%) Wants (30%)</option>
-            <option value="2">Necessities (20%) Savings (70%) Wants (10%)</option>
-            <option value="3">Custom</option>
+            <option value="first">Necessities (20%) Savings (50%) Wants (30%)</option>
+            <option value="second">Necessities (20%) Savings (70%) Wants (10%)</option>
+            <option value="third" >Custom</option>
           </select>
           <br>
           <p id="message"></p>

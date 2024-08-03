@@ -54,7 +54,7 @@ class taxCalculator:
         self.taxes += self.city(self.agi,status)
 
         self.fed = self.federal(self.agi, status)
-        self.cit = self.federal(self.agi, status)
+        self.cit = self.city(self.agi, status)
         self.sta = self.state(self.agi, status)
         self.leftover = (self.income - self.taxes)/12
 
@@ -107,6 +107,7 @@ class taxCalculator:
         
 
         return taxable_income 
+    
     def city(self, agi, status):
         taxable_income = 0
         #Refer to state tax comments
@@ -125,11 +126,11 @@ class taxCalculator:
     def social_sec(self, income):
         taxable_income = 0 
         if income <= 168800:
-            taxable_income = 0.062 * income
+            taxable_income = round((0.062 * income), 2)
         else:
-            taxable_income = 0.062 * 168800
+            taxable_income = round((0.062 * 168800),2)
 
-        return  round(taxable_income, 2)
+        return  taxable_income
     
 
     def medicare(self, income, status):
@@ -143,7 +144,7 @@ class taxCalculator:
             if income < 200000:
                 taxable_income =  0.0145 * income
             else: 
-                taxable_income = (0.0145 + 0.009)* income
+                taxable_income = (0.0145 + 0.009) * income
 
         return round(taxable_income, 2)
         
@@ -166,7 +167,7 @@ class budgetOptions:
         percents = {}
         percents['necessities'] = necessities * budget
         percents['savings'] = savings * budget
-        percents['wants'] = savings * wants
+        percents['wants'] = wants * budget
 
         return percents
     

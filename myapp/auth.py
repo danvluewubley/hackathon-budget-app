@@ -61,7 +61,6 @@ def signUp():
         income1 = request.form.get("income")
 
         new_info = Stats(user_id=current.id, income=income1, location=location1, deductions=deduction1, status=status1)
-
         try:
             db.session.add(new_info)
             db.session.commit()
