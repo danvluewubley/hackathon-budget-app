@@ -4,7 +4,7 @@ A web application to help users manage their budgeting efficiently. This app all
 ## Features
 * User authentication (sign up, log in, log out)
 * Dashboard for budgeting overview
-* Flash messages for user feedbac
+* Flash messages for user feedback
 * Bootstrap for responsive design
 
 ## Installation
